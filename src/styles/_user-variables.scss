@@ -1,0 +1,15 @@
+//
+//
+// user-variables.scss
+//
+// Place your own variable overrides here, these will override any Bootstrap and theme variables.
+
+//*-----------------------------------------------
+//|   Fonts Families
+//-----------------------------------------------*/
+
+$font-family-sans-serif: Lato, 'Helvetica Neue', Arial, sans-serif,
+  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol' !default;
+$font-family-serif: 'PT Serif', Times, 'Times New Roman', Georgia, serif !default;
+//$font-family-monospace: 'PT Mono', SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
+$font-family-base: $font-family-serif !default;

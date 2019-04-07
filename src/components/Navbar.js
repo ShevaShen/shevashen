@@ -1,14 +1,14 @@
-import React from "react";
-import { Link } from "gatsby";
-import github from "../img/github-icon.svg";
-import logo from "../img/logo.svg";
+import React from 'react';
+import { Link } from 'gatsby';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 const Navbar = class extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       active: false,
-      navBarActiveClass: ""
+      navBarActiveClass: ''
     };
   }
 
@@ -23,72 +23,43 @@ const Navbar = class extends React.Component {
         // set the class in state for the navbar accordingly
         this.state.active
           ? this.setState({
-              navBarActiveClass: "is-active"
+              navBarActiveClass: 'open'
             })
           : this.setState({
-              navBarActiveClass: ""
+              navBarActiveClass: ''
             });
       }
     );
   };
 
   render() {
+    const { active, navBarActiveClass } = this.state;
+
     return (
-      <nav
-        className="navbar is-transparent"
-        role="navigation"
-        aria-label="main-navigation"
-      >
-        <div className="container">
-          <div className="navbar-brand">
-            <Link to="/" className="navbar-item" title="Logo">
-              <img src={logo} alt="Kaldi" style={{ width: "88px" }} />
-            </Link>
-            {/* Hamburger menu */}
-            <div
-              className={`navbar-burger burger ${this.state.navBarActiveClass}`}
-              data-target="navMenu"
-              onClick={() => this.toggleHamburger()}
-            >
-              <span />
-              <span />
-              <span />
-            </div>
-          </div>
-          <div
-            id="navMenu"
-            className={`navbar-menu ${this.state.navBarActiveClass}`}
+      <nav className="fancynavbar bg-dark position-relative position-lg-fixed">
+        <div className="fancynavbar-togglerbar">
+          <Link className="fancynavbar-brand" to="/">
+            <span className="logo-nav">SS</span>
+          </Link>
+          <button
+            className="navbar-toggler text-white mr-3 mr-lg-0"
+            onClick={this.toggleHamburger}
+            aria-controls="navbarSupportedContent"
+            aria-expanded={active}
+            aria-label="Toggle navigation"
           >
-            <div className="navbar-start has-text-centered">
-              <Link className="navbar-item" to="/about">
-                About
+            <FontAwesomeIcon icon={faBars} />
+          </button>
+          <div className="fancynavbar-addon">EN</div>
+        </div>
+        <div className={`fancynavbar-collapse ${navBarActiveClass}`}>
+          <ul className="fancynavbar-nav">
+            <li className="fancynav-item">
+              <Link className="fancynav-link" to="/contact">
+                <span className="fancynav-link-content">contact</span>
               </Link>
-              <Link className="navbar-item" to="/products">
-                Products
-              </Link>
-              <Link className="navbar-item" to="/blog">
-                Blog
-              </Link>
-              <Link className="navbar-item" to="/contact">
-                Contact
-              </Link>
-              <Link className="navbar-item" to="/contact/examples">
-                Form Examples
-              </Link>
-            </div>
-            <div className="navbar-end has-text-centered">
-              <a
-                className="navbar-item"
-                href="https://github.com/AustinGreen/gatsby-netlify-cms-boilerplate"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="icon">
-                  <img src={github} alt="Github" />
-                </span>
-              </a>
-            </div>
-          </div>
+            </li>
+          </ul>
         </div>
       </nav>
     );
