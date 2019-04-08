@@ -1,4 +1,11 @@
 import React from 'react';
+import SocialLink from './SocialLink';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faLinkedin,
+  faInstagram,
+  faGithub
+} from '@fortawesome/free-brands-svg-icons';
 
 const Hero = props => {
   const { title, heading, description } = props;
@@ -22,9 +29,19 @@ const Hero = props => {
       </div>
       <div className="overflow-hidden">
         <div className="d-lg-flex align-items-center font-weight-bold ls mt-3 mt-md-5 text-uppercase">
-          <h6 className="mb-lg-0">
-            Site under construction! Please check back later!
-          </h6>
+          <h6 className="mb-lg-0 mr-3">Follow Me:</h6>
+          <div className="overflow-hidden">
+            <SocialLink link="https://www.linkedin.com/in/shevashen/">
+              <FontAwesomeIcon icon={faLinkedin} />
+            </SocialLink>
+
+            <SocialLink link="https://github.com/ShevaShen">
+              <FontAwesomeIcon icon={faGithub} />
+            </SocialLink>
+            <SocialLink link="https://www.instagram.com/shevashen/">
+              <FontAwesomeIcon icon={faInstagram} />
+            </SocialLink>
+          </div>
         </div>
       </div>
     </React.Fragment>
