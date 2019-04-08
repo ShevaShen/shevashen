@@ -67,6 +67,14 @@ module.exports = {
         modulePath: `${__dirname}/src/cms/cms.js`
       }
     },
+    {
+      resolve: 'gatsby-plugin-web-font-loader',
+      options: {
+        google: {
+          families: ['PT Sans', 'PT Sans Narrow']
+        }
+      }
+    },
     // {
     //   resolve: 'gatsby-plugin-purgecss', // purges all unused/unreferenced css rules
     //   options: {
