@@ -26,10 +26,19 @@ body {
   overflow: hidden;
 }
 .fancynavbar-collapse {
+  width: 0;
+  padding: 0;
   transform: translate(100%, 0%) matrix(1, 0, 0, 1, 0, 0);
   transition: all 0.5s;
 
   &.open {
+    width: calc(50vw - 2.1875rem);
+    padding-left: 4.375rem;
+    padding-right: 4.375rem;
     transform: matrix(1, 0, 0, 1, 0, 0);
+
+    @media (max-width: 992px) {
+      width: 100%;
+    }
   }
 }

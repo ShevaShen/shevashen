@@ -71,7 +71,7 @@ module.exports = {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
         google: {
-          families: ['PT Sans', 'PT Sans Narrow']
+          families: ['Arvo', 'Lato']
         }
       }
     },
