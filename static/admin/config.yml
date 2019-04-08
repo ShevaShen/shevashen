@@ -24,12 +24,36 @@ collections:
       - { label: 'Description', name: 'description', widget: 'text' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
       - { label: 'Tags', name: 'tags', widget: 'list' }
-
+  - name: 'portfolio'
+    label: 'Porfolio'
+    folder: 'src/pages/portfolio'
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - {
+          label: 'Template Key',
+          name: 'templateKey',
+          widget: 'hidden',
+          default: 'portfolio-post',
+        }
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Description', name: 'description', widget: 'text' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: 'Tags', name: 'tags', widget: 'list' }
+      - { label: 'Link', name: 'link', widget: 'string', required: false }
+      - {
+          label: 'Image',
+          name: 'image',
+          widget: 'image',
+          required: false,
+          default: '/img/portfolio-placeholder.jpg',
+        }
   - name: 'pages'
     label: 'Pages'
     files:
       - file: 'src/pages/index.md'
-        label: 'Landing Page'
+        label: 'Home Page'
         name: 'index'
         fields:
           - {
@@ -37,6 +61,20 @@ collections:
               name: 'templateKey',
               widget: 'hidden',
               default: 'index-page',
+            }
+          - { label: Title, name: title, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Subheading, name: subheading, widget: string }
+          - { label: Description, name: description, widget: string }
+      - file: 'src/pages/portfolio/index.md'
+        label: 'Portfolio Page'
+        name: 'portfolio'
+        fields:
+          - {
+              label: 'Template Key',
+              name: 'templateKey',
+              widget: 'hidden',
+              default: 'portfolio-page',
             }
           - { label: Title, name: title, widget: string }
           - { label: Heading, name: heading, widget: string }

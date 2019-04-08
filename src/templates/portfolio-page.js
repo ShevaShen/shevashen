@@ -4,9 +4,8 @@ import { Link, graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
 import { Container, Row, Col } from 'reactstrap';
-import Hero from '../components/home/Hero';
 
-export const IndexPageTemplate = ({
+export const PortfolioPageTemplate = ({
   title,
   heading,
   subheading,
@@ -16,26 +15,29 @@ export const IndexPageTemplate = ({
     <Container>
       <Row>
         <Col>
-          <Hero title={title} heading={heading} description={description} />
+          <h1>{title}</h1>
+          <h3>{heading}</h3>
+          <h5>{subheading}</h5>
+          <p>{description}</p>
         </Col>
       </Row>
     </Container>
   </section>
 );
 
-IndexPageTemplate.propTypes = {
+PortfolioPageTemplate.propTypes = {
   title: PropTypes.string,
   heading: PropTypes.string,
   subheading: PropTypes.string,
   description: PropTypes.string
 };
 
-const IndexPage = ({ data }) => {
+const PortfolioPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark;
 
   return (
     <Layout>
-      <IndexPageTemplate
+      <PortfolioPageTemplate
         title={frontmatter.title}
         heading={frontmatter.heading}
         subheading={frontmatter.subheading}
@@ -45,7 +47,7 @@ const IndexPage = ({ data }) => {
   );
 };
 
-IndexPage.propTypes = {
+PortfolioPage.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.shape({
       frontmatter: PropTypes.object
@@ -53,11 +55,11 @@ IndexPage.propTypes = {
   })
 };
 
-export default IndexPage;
+export default PortfolioPage;
 
 export const pageQuery = graphql`
-  query IndexPageTemplate {
-    markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
+  query PortfolioPageTemplate {
+    markdownRemark(frontmatter: { templateKey: { eq: "portfolio-page" } }) {
       frontmatter {
         title
         heading
