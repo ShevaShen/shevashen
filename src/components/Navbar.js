@@ -54,11 +54,11 @@ const Navbar = class extends React.Component {
         </div>
         <div className={`fancynavbar-collapse ${navBarActiveClass}`}>
           <ul className="fancynavbar-nav">
-            <li className="fancynav-item">
+            {/* <li className="fancynav-item">
               <Link className="fancynav-link" to="/portfolio">
                 <span className="fancynav-link-content">portfolio</span>
               </Link>
-            </li>
+            </li> */}
             <li className="fancynav-item">
               <Link className="fancynav-link" to="/contact">
                 <span className="fancynav-link-content">contact</span>

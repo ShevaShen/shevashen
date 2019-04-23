@@ -51,7 +51,7 @@ class ContactUsPage extends React.Component {
                 <h1 className="text-underline d-inline-block mb-4 mb-lg-6">
                   contact
                 </h1>
-                <h3 className="mt-4">Give me a shout</h3>
+                <h3 className="mt-3">Give me a shout</h3>
                 <Form
                   name="contact-us"
                   method="post"
@@ -59,7 +59,7 @@ class ContactUsPage extends React.Component {
                   data-netlify="true"
                   data-netlify-honeypot="bot-field"
                   onSubmit={this.handleSubmit}
-                  className="mt-4"
+                  className="mt-4 mb-5"
                 >
                   {/* The `form-name` hidden field is required to support form submissions without JavaScript */}
                   <Input type="hidden" name="form-name" value="contact" />

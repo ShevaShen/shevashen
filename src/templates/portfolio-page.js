@@ -4,6 +4,7 @@ import { Link, graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
 import { Container, Row, Col } from 'reactstrap';
+import Gallery from '../components/portfolio/Gallery';
 
 export const PortfolioPageTemplate = ({
   title,
@@ -19,6 +20,7 @@ export const PortfolioPageTemplate = ({
           <h3>{heading}</h3>
           <h5>{subheading}</h5>
           <p>{description}</p>
+          <Gallery />
         </Col>
       </Row>
     </Container>
