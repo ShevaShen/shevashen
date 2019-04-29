@@ -9,23 +9,17 @@ public_folder: /img
 collections:
   - name: 'blog_english'
     label: 'Blog English'
-    folder: 'src/pages/blog/en'
-    filter: { field: 'language', value: 'en' }
+    folder: 'src/pages/blog'
     create: true
-    slug: '{{language}}/{{year}}-{{month}}-{{day}}-{{slug}}'
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    extension: 'en.md'
+    format: 'frontmatter'
     fields:
       - {
           label: 'Template Key',
           name: 'templateKey',
           widget: 'hidden',
           default: 'blog-post',
-        }
-      - {
-          label: 'Language',
-          name: 'language',
-          widget: 'select',
-          options: ['en', 'cn'],
-          default: 'en',
         }
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
@@ -35,22 +29,16 @@ collections:
   - name: 'blog_chinese'
     label: 'Blog Chinese'
     folder: 'src/pages/blog/cn'
-    filter: { field: 'language', value: 'cn' }
     create: true
-    slug: '{{language}}/{{year}}-{{month}}-{{day}}-{{slug}}'
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    extension: 'cn.md'
+    format: 'frontmatter'
     fields:
       - {
           label: 'Template Key',
           name: 'templateKey',
           widget: 'hidden',
           default: 'blog-post',
-        }
-      - {
-          label: '语言',
-          name: 'language',
-          widget: 'select',
-          options: ['en', 'cn'],
-          default: 'cn',
         }
       - { label: '标题', name: 'title', widget: 'string' }
       - { label: '发布日期', name: 'date', widget: 'datetime' }
@@ -85,9 +73,23 @@ collections:
   - name: 'pages'
     label: 'Pages'
     files:
-      - file: 'src/pages/index.md'
-        label: 'Home Page'
-        name: 'index'
+      - file: 'src/pages/index.en.md'
+        label: 'Home Page EN'
+        name: 'index-en'
+        fields:
+          - {
+              label: 'Template Key',
+              name: 'templateKey',
+              widget: 'hidden',
+              default: 'index-page',
+            }
+          - { label: Title, name: title, widget: string }
+          - { label: Heading, name: heading, widget: string }
+          - { label: Subheading, name: subheading, widget: string }
+          - { label: Description, name: description, widget: string }
+      - file: 'src/pages/index.cn.md'
+        label: 'Home Page CN'
+        name: 'index-cn'
         fields:
           - {
               label: 'Template Key',

@@ -14,6 +14,7 @@ exports.createPages = ({ actions, graphql }) => {
             id
             fields {
               slug
+              langKey
             }
             frontmatter {
               tags
@@ -41,7 +42,8 @@ exports.createPages = ({ actions, graphql }) => {
         ),
         // additional data can be passed via context
         context: {
-          id
+          id,
+          langKey: edge.node.fields.langKey
         }
       });
     });
@@ -76,22 +78,15 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions;
   fmImagesToRelative(node); // convert image paths for gatsby images
 
-  if (node.internal.type === `MarkdownRemark`) {
+  if (
+    node.internal.type === `MarkdownRemark` &&
+    node.internal.fieldOwners.slug !== 'gatsby-plugin-i18n'
+  ) {
     const value = createFilePath({ node, getNode });
     createNodeField({
       name: `slug`,
       node,
       value
     });
-  }
-};
-
-exports.onCreateWebpackConfig = ({ getConfig, stage }) => {
-  const config = getConfig();
-  if (stage.startsWith('develop') && config.resolve) {
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      'react-dom': '@hot-loader/react-dom'
-    };
   }
 };

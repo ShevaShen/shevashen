@@ -5,6 +5,7 @@ import { Link, graphql } from 'gatsby';
 import Layout from '../components/Layout';
 import { Container, Row, Col } from 'reactstrap';
 import Hero from '../components/home/Hero';
+import BlogRoll from '../components/BlogRoll';
 
 export const IndexPageTemplate = ({
   title,
@@ -17,6 +18,7 @@ export const IndexPageTemplate = ({
       <Row>
         <Col>
           <Hero title={title} heading={heading} description={description} />
+          {/* <BlogRoll /> */}
         </Col>
       </Row>
     </Container>
@@ -56,8 +58,14 @@ IndexPage.propTypes = {
 export default IndexPage;
 
 export const pageQuery = graphql`
-  query IndexPageTemplate {
-    markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
+  query IndexPageTemplate($langKey: String!) {
+    markdownRemark(
+      fields: { langKey: { eq: $langKey } }
+      frontmatter: { templateKey: { eq: "index-page" } }
+    ) {
+      fields {
+        langKey
+      }
       frontmatter {
         title
         heading

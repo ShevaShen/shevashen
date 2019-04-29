@@ -62,6 +62,15 @@ module.exports = {
       }
     },
     {
+      resolve: 'gatsby-plugin-i18n',
+      options: {
+        langKeyForNull: `en`,
+        langKeyDefault: `en`,
+        useLangKeyLayout: false,
+        prefixDefault: false
+      }
+    },
+    {
       resolve: 'gatsby-plugin-netlify-cms',
       options: {
         modulePath: `${__dirname}/src/cms/cms.js`
