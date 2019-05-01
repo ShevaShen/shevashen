@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'reactstrap';
 const Footer = class extends React.Component {
   render() {
     return (
-      <footer className="fixed-bottom bg-black text-600 py-3 text-sans-serif text-center overflow-hidden">
+      <footer className="fixed-bottom border-top text-600 py-3 text-sans-serif text-center overflow-hidden">
         <Container>
           <Row>
             <Col>

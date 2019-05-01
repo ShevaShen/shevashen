@@ -4,7 +4,11 @@ module.exports = {
   siteMetadata: {
     title: 'Sheva Shen | Vancouver based Front End Developr',
     description:
-      'I am a Vancouver based front end developer. I specialize in web front end development with a solid UI/UX background.'
+      'I am a Vancouver based front end developer. I specialize in web front end development with a solid UI/UX background.',
+    languages: {
+      langs: ['en', 'cn'],
+      defaultLangKey: 'en'
+    }
   },
   plugins: [
     'gatsby-plugin-react-helmet',

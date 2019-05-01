@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
+import LanguageToggler from './LanguageToggler';
 
 const Navbar = class extends React.Component {
   constructor(props) {
@@ -50,7 +51,9 @@ const Navbar = class extends React.Component {
           >
             <FontAwesomeIcon icon={faBars} />
           </button>
-          <div className="fancynavbar-addon">EN</div>
+          <div className="fancynavbar-addon">
+            <LanguageToggler />
+          </div>
         </div>
         <div className={`fancynavbar-collapse ${navBarActiveClass}`}>
           <ul className="fancynavbar-nav">
