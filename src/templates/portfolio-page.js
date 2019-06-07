@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Link, graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
-import { Container, Row, Col } from 'reactstrap';
 import Gallery from '../components/portfolio/Gallery';
 
 export const PortfolioPageTemplate = ({
@@ -13,17 +12,11 @@ export const PortfolioPageTemplate = ({
   description
 }) => (
   <section>
-    <Container>
-      <Row>
-        <Col>
-          <h1>{title}</h1>
-          <h3>{heading}</h3>
-          <h5>{subheading}</h5>
-          <p>{description}</p>
-          <Gallery />
-        </Col>
-      </Row>
-    </Container>
+    <h1>{title}</h1>
+    <h3>{heading}</h3>
+    <h5>{subheading}</h5>
+    <p>{description}</p>
+    <Gallery />
   </section>
 );
 

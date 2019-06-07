@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Link, graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
-import { Container, Row, Col } from 'reactstrap';
 import Hero from '../components/home/Hero';
 import BlogRoll from '../components/BlogRoll';
 
@@ -14,14 +13,7 @@ export const IndexPageTemplate = ({
   description
 }) => (
   <section>
-    <Container>
-      <Row>
-        <Col>
-          <Hero title={title} heading={heading} description={description} />
-          {/* <BlogRoll /> */}
-        </Col>
-      </Row>
-    </Container>
+    <Hero title={title} heading={heading} description={description} />
   </section>
 );
 
