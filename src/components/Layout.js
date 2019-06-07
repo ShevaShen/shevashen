@@ -29,11 +29,10 @@ const TemplateWrapper = ({ children }) => {
       <ThemeProvider theme={theme}>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
+        <Header />
         {children}
+        <Footer />
       </ThemeProvider>
-      <Header />
-      {children}
-      <Footer />
     </React.Fragment>
   );
 };
