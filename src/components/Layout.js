@@ -5,7 +5,7 @@ import Header from '../components/Header';
 import useSiteMetadata from './SiteMetadata';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/styles';
-import theme from '../theme';
+import theme from '../theme/instapaper/theme';
 
 const TemplateWrapper = ({ children }) => {
   const { title, description } = useSiteMetadata();

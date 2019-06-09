@@ -1,4 +1,12 @@
 import React from 'react';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import { makeStyles } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
+import atoms from '../atoms';
+import theme from '../../theme/instapaper/theme';
+
 import SocialLink from './SocialLink';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -7,44 +15,79 @@ import {
   faGithub
 } from '@fortawesome/free-brands-svg-icons';
 
+const { Avatar, Typography } = atoms;
+
+const useStyles = makeStyles({
+  editButton: {
+    marginLeft: 0,
+    marginTop: 12,
+    [theme.breakpoints.up('sm')]: {
+      marginLeft: 20,
+      marginTop: 0
+    }
+  }
+});
+
 const Hero = props => {
   const { title, heading, description } = props;
 
-  return (
-    <React.Fragment>
-      <div className="overflow-hidden">
-        <h5 className="text-uppercase font-weight-normal ls text-white bg-dark p-1 rounded d-inline-block">
-          {heading}
-        </h5>
-      </div>
-      <div className="overflow-hidden">
-        <h1 className="display-3 fs-4 fs-sm-5">
-          <span className="text-underline">Sheva</span>
-          <br />
-          <span className="font-weight-light">Shen</span>
-        </h1>
-      </div>
-      <div className="overflow-hidden w-100 w-md-50">
-        <p className="text-900 fs-0 mt-3 mt-md-5">{description}</p>
-      </div>
-      <div className="overflow-hidden">
-        <div className="d-lg-flex align-items-center font-weight-bold ls mt-3 mt-md-5 text-uppercase">
-          <h6 className="mb-lg-0 mr-3">Follow Me:</h6>
-          <div className="overflow-hidden">
-            <SocialLink link="https://www.linkedin.com/in/shevashen/">
-              <FontAwesomeIcon icon={faLinkedin} />
-            </SocialLink>
+  const classes = useStyles();
+  const upSm = useMediaQuery(theme.breakpoints.up('sm'), {
+    defaultMatches: true
+  });
 
-            <SocialLink link="https://github.com/ShevaShen">
-              <FontAwesomeIcon icon={faGithub} />
-            </SocialLink>
-            <SocialLink link="https://www.instagram.com/shevashen/">
-              <FontAwesomeIcon icon={faInstagram} />
-            </SocialLink>
-          </div>
-        </div>
-      </div>
-    </React.Fragment>
+  return (
+    <Grid container>
+      <Grid item xs={4}>
+        <Avatar
+          ultraLarge={upSm}
+          medium={!upSm}
+          style={{ margin: 'auto' }}
+          alt="My profile"
+          src="https://cc-media-foxit.fichub.com/image/fox-it-mondofox/e8c0f288-781d-4d0b-98ad-fd169782b53b/scene-sottacqua-per-i-sequel-di-avatar-maxw-654.jpg"
+        />
+      </Grid>
+      <Grid item xs={8}>
+        <Box clone mb="20px">
+          <Grid container alignItems="center">
+            <Typography component="h1" variant="h4" lightWeight>
+              siriwatknp
+            </Typography>
+            <Button
+              className={classes.editButton}
+              variant="outlined"
+              fullWidth={!upSm}
+            >
+              Edit Profile
+            </Button>
+          </Grid>
+        </Box>
+        <Box mb="20px">
+          <Grid container spacing={5}>
+            <Grid item>
+              <Typography variant="subtitle1">
+                <b>132</b> posts
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="subtitle1">
+                <b>325</b> followers
+              </Typography>
+            </Grid>
+            <Grid item>
+              <Typography variant="subtitle1">
+                <b>260</b> following
+              </Typography>
+            </Grid>
+          </Grid>
+        </Box>
+        <Typography variant="subtitle1" bold>
+          Siriwat Kunaporn
+        </Typography>
+        <Typography variant="subtitle1">Bangkok Christian College</Typography>
+        <Typography variant="subtitle1">CU intania 96.</Typography>
+      </Grid>
+    </Grid>
   );
 };
 
