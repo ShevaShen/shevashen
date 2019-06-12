@@ -1,17 +1,29 @@
 import React from 'react';
 import LanguageToggler from './LanguageToggler';
+import { makeStyles } from '@material-ui/core/styles';
+import atoms from './atoms';
 
-const Footer = class extends React.Component {
-  render() {
-    return (
-      <footer className="fixed-bottom border-top text-600 py-3 text-sans-serif text-center overflow-hidden bg-white">
-        <LanguageToggler />
-        <p className="fs--1 text-uppercase ls font-weight-bold mb-0 mt-2 mt-md-0 ml-0 ml-md-5">
-          Copyright &copy; 2019 GreenFish Digital
-        </p>
-      </footer>
-    );
+const { Divider, Typography } = atoms;
+
+const useStyles = makeStyles({
+  conatiner: {
+    padding: 15
+  },
+  divider: {
+    marginBottom: 15
   }
+});
+
+const Footer = () => {
+  const classes = useStyles();
+
+  return (
+    <footer className={classes.conatiner}>
+      <LanguageToggler />
+      <Divider className={classes.divider} />
+      <Typography variant="body2">&copy; GreenFish Digital 2019</Typography>
+    </footer>
+  );
 };
 
 export default Footer;
