@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'gatsby';
 import useSiteMetadata from './SiteMetadata';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
 
 const LanguageToggler = () => {
   const { languages } = useSiteMetadata();
@@ -8,20 +10,18 @@ const LanguageToggler = () => {
   const { langs, defaultLangKey } = languages;
 
   return (
-    <div>
+    <ButtonGroup size="small" aria-label="Language Toggler">
       {langs.map(lang => {
         const homeLink = lang === defaultLangKey ? `/` : `/cn`;
-        const displayLang = lang === defaultLangKey ? `English` : `中文`;
+        const displayLang = lang === defaultLangKey ? `ENG` : `中文`;
 
         return (
-          <Link key={`language_${lang}`} to={homeLink}>
-            <span className="fs--1 font-weight-bold text-uppercase bg-light p-1 text-dark mx-1">
-              {displayLang}
-            </span>
-          </Link>
+          <Button key={`language_${lang}`} component={Link} to={homeLink}>
+            {displayLang}
+          </Button>
         );
       })}
-    </div>
+    </ButtonGroup>
   );
 };
 

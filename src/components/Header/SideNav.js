@@ -7,6 +7,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
+import SideProfile from './SideProfile';
 
 const useStyles = makeStyles({
   list: {
@@ -29,7 +30,7 @@ const SideNav = () => {
 
   const classes = useStyles();
 
-  const sideList = side => (
+  const sideList = () => (
     <div
       className={classes.list}
       role="presentation"
@@ -57,12 +58,13 @@ const SideNav = () => {
         <MenuIcon />
       </Button>
       <SwipeableDrawer
-        anchor="right"
+        anchor="left"
         open={isOpen}
         onClose={() => setIsOpen(false)}
         onOpen={() => setIsOpen(true)}
       >
-        {sideList('right')}
+        <SideProfile />
+        {sideList()}
       </SwipeableDrawer>
     </React.Fragment>
   );
