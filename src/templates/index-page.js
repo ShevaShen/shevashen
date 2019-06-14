@@ -22,9 +22,14 @@ export const IndexPageTemplate = ({
 
   return (
     <React.Fragment>
-      <Box component="main" maxWidth={935} margin="auto" padding="60px 20px 0">
-        <Box mb="44px">
-          <Hero />
+      <Box component='main' maxWidth={935} margin='auto' padding='60px 20px 0'>
+        <Box mb='44px'>
+          <Hero
+            title={title}
+            heading={heading}
+            subheading={subheading}
+            description={description}
+          />
         </Box>
         <Tabs
           value={tabIndex}
@@ -33,31 +38,31 @@ export const IndexPageTemplate = ({
             setTabIndex(value);
           }}
         >
-          <Tab label="Posts" />
-          <Tab label="IGTV" />
-          <Tab label="Saved" />
-          <Tab label="Tagged" />
+          <Tab label='Posts' />
+          <Tab label='IGTV' />
+          <Tab label='Saved' />
+          <Tab label='Tagged' />
         </Tabs>
         <Grid container spacing={4}>
           <Grid item xs={4}>
             <img
-              alt="post"
+              alt='post'
               style={{ width: '100%' }}
-              src="https://via.placeholder.com/500/f5f5f5"
+              src='https://via.placeholder.com/500/f5f5f5'
             />
           </Grid>
           <Grid item xs={4}>
             <img
-              alt="post"
+              alt='post'
               style={{ width: '100%' }}
-              src="https://via.placeholder.com/500/f5f5f5"
+              src='https://via.placeholder.com/500/f5f5f5'
             />
           </Grid>
           <Grid item xs={4}>
             <img
-              alt="post"
+              alt='post'
               style={{ width: '100%' }}
-              src="https://via.placeholder.com/500/f5f5f5"
+              src='https://via.placeholder.com/500/f5f5f5'
             />
           </Grid>
         </Grid>
