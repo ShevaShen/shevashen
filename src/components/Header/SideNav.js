@@ -8,6 +8,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import MenuIcon from '@material-ui/icons/Menu';
 import SideProfile from './SideProfile';
+import Divider from '../atoms/Divider';
 
 const useStyles = makeStyles({
   list: {
@@ -33,7 +34,7 @@ const SideNav = () => {
   const sideList = () => (
     <div
       className={classes.list}
-      role="presentation"
+      role='presentation'
       onClick={() => setIsOpen(false)}
       onKeyDown={() => setIsOpen(false)}
     >
@@ -58,12 +59,13 @@ const SideNav = () => {
         <MenuIcon />
       </Button>
       <SwipeableDrawer
-        anchor="left"
+        anchor='left'
         open={isOpen}
         onClose={() => setIsOpen(false)}
         onOpen={() => setIsOpen(true)}
       >
         <SideProfile />
+        <Divider />
         {sideList()}
       </SwipeableDrawer>
     </React.Fragment>

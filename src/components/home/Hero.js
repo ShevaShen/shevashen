@@ -7,14 +7,6 @@ import useMediaQuery from '@material-ui/core/useMediaQuery';
 import atoms from '../atoms';
 import theme from '../../theme/instapaper/theme';
 
-import SocialLink from './SocialLink';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faLinkedin,
-  faInstagram,
-  faGithub
-} from '@fortawesome/free-brands-svg-icons';
-
 const { Avatar, Typography } = atoms;
 
 const useStyles = makeStyles({
@@ -43,49 +35,49 @@ const Hero = props => {
           ultraLarge={upSm}
           medium={!upSm}
           style={{ margin: 'auto' }}
-          alt="My profile"
-          src="https://cc-media-foxit.fichub.com/image/fox-it-mondofox/e8c0f288-781d-4d0b-98ad-fd169782b53b/scene-sottacqua-per-i-sequel-di-avatar-maxw-654.jpg"
+          alt='My profile'
+          src='https://cc-media-foxit.fichub.com/image/fox-it-mondofox/e8c0f288-781d-4d0b-98ad-fd169782b53b/scene-sottacqua-per-i-sequel-di-avatar-maxw-654.jpg'
         />
       </Grid>
       <Grid item xs={8}>
-        <Box clone mb="20px">
-          <Grid container alignItems="center">
-            <Typography component="h1" variant="h4" lightWeight>
+        <Box clone mb='20px'>
+          <Grid container alignItems='center'>
+            <Typography component='h1' variant='h4' lightWeight>
               siriwatknp
             </Typography>
             <Button
               className={classes.editButton}
-              variant="outlined"
+              variant='outlined'
               fullWidth={!upSm}
             >
               Edit Profile
             </Button>
           </Grid>
         </Box>
-        <Box mb="20px">
+        <Box mb='20px'>
           <Grid container spacing={5}>
             <Grid item>
-              <Typography variant="subtitle1">
+              <Typography variant='subtitle1'>
                 <b>132</b> posts
               </Typography>
             </Grid>
             <Grid item>
-              <Typography variant="subtitle1">
+              <Typography variant='subtitle1'>
                 <b>325</b> followers
               </Typography>
             </Grid>
             <Grid item>
-              <Typography variant="subtitle1">
+              <Typography variant='subtitle1'>
                 <b>260</b> following
               </Typography>
             </Grid>
           </Grid>
         </Box>
-        <Typography variant="subtitle1" bold>
+        <Typography variant='subtitle1' bold>
           Siriwat Kunaporn
         </Typography>
-        <Typography variant="subtitle1">Bangkok Christian College</Typography>
-        <Typography variant="subtitle1">CU intania 96.</Typography>
+        <Typography variant='subtitle1'>Bangkok Christian College</Typography>
+        <Typography variant='subtitle1'>CU intania 96.</Typography>
       </Grid>
     </Grid>
   );
