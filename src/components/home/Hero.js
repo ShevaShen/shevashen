@@ -1,27 +1,29 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import atoms from '../atoms';
 
 const { Typography } = atoms;
 
 const Hero = props => {
-  const { title, heading, subheading, description } = props;
+  const { title1, title2, description } = props;
+
+  const theme = useTheme();
+  const smUp = useMediaQuery(theme.breakpoints.up('sm'));
 
   return (
-    <Grid container>
-      <Typography variant='h1' bold display='block'>
-        {title}
+    <Box>
+      <Typography variant={smUp ? 'h1' : 'h3'} component='h1' bold>
+        {title1}
       </Typography>
-      <Typography variant='h4' display='block'>
-        {heading}
+      <Typography variant={smUp ? 'h1' : 'h3'} component='h1' bold gutterBottom>
+        {title2}
       </Typography>
-      <Typography variant='h5' display='block'>
-        {subheading}
-      </Typography>
-      <Typography variant='h6' display='block'>
+      <Typography variant='body1' paragraph={true} gutterBottom>
         {description}
       </Typography>
-    </Grid>
+    </Box>
   );
 };
 

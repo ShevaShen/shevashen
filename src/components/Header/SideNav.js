@@ -22,6 +22,10 @@ const useStyles = makeStyles({
 
 const navData = [
   {
+    label: 'home',
+    path: '/'
+  },
+  {
     label: 'contact',
     path: '/contact'
   }

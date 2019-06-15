@@ -12,24 +12,14 @@ import Box from '@material-ui/core/Box';
 
 const { Tabs, Tab } = molecules;
 
-export const IndexPageTemplate = ({
-  title,
-  heading,
-  subheading,
-  description
-}) => {
+export const IndexPageTemplate = ({ title1, title2, description }) => {
   const [tabIndex, setTabIndex] = React.useState(0);
 
   return (
     <React.Fragment>
       <Box component='main' maxWidth={935} margin='auto' padding='60px 20px 0'>
         <Box mb='44px'>
-          <Hero
-            title={title}
-            heading={heading}
-            subheading={subheading}
-            description={description}
-          />
+          <Hero title1={title1} title2={title2} description={description} />
         </Box>
         <Tabs
           value={tabIndex}
@@ -72,9 +62,8 @@ export const IndexPageTemplate = ({
 };
 
 IndexPageTemplate.propTypes = {
-  title: PropTypes.string,
-  heading: PropTypes.string,
-  subheading: PropTypes.string,
+  title1: PropTypes.string,
+  title2: PropTypes.string,
   description: PropTypes.string
 };
 
@@ -84,9 +73,8 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <IndexPageTemplate
-        title={frontmatter.title}
-        heading={frontmatter.heading}
-        subheading={frontmatter.subheading}
+        title1={frontmatter.title1}
+        title2={frontmatter.title2}
         description={frontmatter.description}
       />
     </Layout>
@@ -113,9 +101,8 @@ export const pageQuery = graphql`
         langKey
       }
       frontmatter {
-        title
-        heading
-        subheading
+        title1
+        title2
         description
       }
     }
