@@ -3,25 +3,25 @@ export const nest = (...clsx) => `& .${clsx.join('.')}`;
 
 export const APP_BAR = {
   root: 'app-bar__root',
-  shaded: 'app-bar--shaded',
+  shaded: 'app-bar--shaded'
 };
 
 export const AVATAR = {
   root: 'avatar__root',
   small: 'avatar--small',
   medium: 'avatar--medium',
-  ultraLarge: 'avatar--ultra-large',
+  ultraLarge: 'avatar--ultra-large'
 };
 
 export const BADGE = {
   root: 'badge__root',
-  dotted: 'badge--dotted',
+  dotted: 'badge--dotted'
 };
 
 export const BUTTON = {
   root: 'button__root',
   inverted: 'button--inverted',
-  danger: 'button--danger',
+  danger: 'button--danger'
 };
 
 export const CARD = {
@@ -29,26 +29,26 @@ export const CARD = {
   contained: 'card__root--contained',
   actionable: 'card__root--actionable',
   spaceGrey: 'card__root--space-grey',
-  darkBlue: 'card__root--dark-blue',
+  darkBlue: 'card__root--dark-blue'
 };
 
 export const CARD_CONTENT = {
-  root: 'card-content__root',
+  root: 'card-content__root'
 };
 
 export const CARD_ACTION_AREA = {
-  root: 'card-action-area__root',
+  root: 'card-action-area__root'
 };
 
 export const CARD_ACTIONS = {
   root: 'card-actions__root',
   action: 'card-actions__action',
-  contained: 'card-actions--contained',
+  contained: 'card-actions--contained'
 };
 
 export const CARD_MEDIA = {
   root: 'card-media__root',
-  wideScreen: 'card-media--wide-screen',
+  wideScreen: 'card-media--wide-screen'
 };
 
 export const CHIP = {
@@ -56,21 +56,21 @@ export const CHIP = {
   label: 'chip__label',
   narrow: 'chip--narrow',
   icon: 'chip__icon',
-  inverted: 'chip--inverted',
+  inverted: 'chip--inverted'
 };
 
 export const DRAWER = {
-  root: 'drawer__root',
+  root: 'drawer__root'
 };
 
 export const DIVIDER = {
   root: 'divider__root',
-  vertical: 'divider--vertical',
+  vertical: 'divider--vertical'
 };
 
 export const GRID = {
   root: 'grid__root',
-  flex: 'grid--flex',
+  flex: 'grid--flex'
 };
 
 export const ICON_BUTTON = {
@@ -79,7 +79,7 @@ export const ICON_BUTTON = {
   noPad: 'icon-button--no-pad',
   narrowPad: 'icon-button--narrow-pad',
   separated: 'icon-button--separated',
-  linkInverted: 'icon-button--link-inverted',
+  linkInverted: 'icon-button--link-inverted'
 };
 
 export const ICON = {
@@ -96,11 +96,11 @@ export const ICON = {
   white: 'icon--white',
   red: 'icon--red',
   primary: 'icon--primary',
-  small: 'icon--small',
+  small: 'icon--small'
 };
 
 export const LIST = {
-  root: 'list__root',
+  root: 'list__root'
 };
 
 export const LIST_ITEM = {
@@ -110,7 +110,7 @@ export const LIST_ITEM = {
   headerActionable: 'list-item__header--actionable',
   active: 'list-item--active',
   category: 'list-item__category',
-  subcategory: 'list-item__subcategory',
+  subcategory: 'list-item__subcategory'
 };
 
 export const LIST_ITEM_TEXT = {
@@ -118,22 +118,22 @@ export const LIST_ITEM_TEXT = {
   primary: 'list-item-text__primary',
   category: 'list-item-text__category',
   subcategory: 'list-item-text__subcategory',
-  subcategoryPrimary: 'list-item-text__subcategory--primary',
+  subcategoryPrimary: 'list-item-text__subcategory--primary'
 };
 
 export const LIST_ITEM_ICON = {
   root: 'list-item-icon__root',
-  subcategory: 'list-item-icon__subcategory',
+  subcategory: 'list-item-icon__subcategory'
 };
 
 export const NOTCHED_OUTLINE = {
   root: 'notched-outline__root',
-  focused: 'notched-outline--focused',
+  focused: 'notched-outline--focused'
 };
 
 export const OUTLINED_INPUT = {
   root: 'outlined-input__root',
-  focused: 'outlined-input--notched-outline',
+  focused: 'outlined-input--notched-outline'
 };
 
 export const TEXT = {
@@ -146,12 +146,12 @@ export const TEXT = {
   indented: 'text--indented',
   indentedLg: 'text--indented-lg',
   light: 'text--light',
-  lightWeight: 'text--light-weight',
+  lightWeight: 'text--light-weight'
 };
 
 export const TOOLBAR = {
   root: 'toolbar__root',
-  narrow: 'toolbar--narrow',
+  narrow: 'toolbar--narrow'
 };
 
 export default {
@@ -176,5 +176,5 @@ export default {
   TOOLBAR,
   TEXT,
   attach,
-  nest,
+  nest
 };

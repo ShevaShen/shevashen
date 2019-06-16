@@ -8,6 +8,7 @@ import {
 } from '@fortawesome/free-brands-svg-icons';
 import SocialLink from '../SocialLink';
 import atoms from '../atoms';
+import HeadshotImg from '../../../static/img/headshot.jpg';
 
 const { Avatar, Typography } = atoms;
 
@@ -20,11 +21,7 @@ const SideProfile = () => {
       flexDirection='column'
       alignItems='center'
     >
-      <Avatar
-        medium
-        alt='Sheva Shen'
-        src='https://cc-media-foxit.fichub.com/image/fox-it-mondofox/e8c0f288-781d-4d0b-98ad-fd169782b53b/scene-sottacqua-per-i-sequel-di-avatar-maxw-654.jpg'
-      />
+      <Avatar medium alt='Sheva Shen' src={HeadshotImg} />
       <Box mt={1} display='flex' flexDirection='column' alignItems='center'>
         <Typography variant='h6'>Sheva Shen</Typography>
         <Typography variant='caption'>

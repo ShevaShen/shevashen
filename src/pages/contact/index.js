@@ -3,30 +3,27 @@ import { navigate } from 'gatsby-link';
 import { graphql, StaticQuery } from 'gatsby';
 import Helmet from 'react-helmet';
 import Layout from '../../components/Layout';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
-import atoms from '../../components/atoms';
 import { makeStyles } from '@material-ui/core/styles';
+import atoms from '../../components/atoms';
 import TextField from '@material-ui/core/TextField';
 import Box from '@material-ui/core/Box';
+import SendIcon from '@material-ui/icons/Send';
 
 const { Typography, Button } = atoms;
 
 const useStyles = makeStyles(theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap'
-  },
-  textField: {
-    marginLeft: theme.spacing(1),
-    marginRight: theme.spacing(1),
-    marginTop: 20
+  button: {
+    marginTop: theme.spacing(4)
   }
 }));
 
 const CustomTextField = props => {
+  return <TextField margin='normal' required={true} {...props} />;
+};
+
+const SubmitButton = props => {
   const classes = useStyles();
-  return <TextField className={classes.textField} {...props} />;
+  return <Button className={classes.button} {...props} />;
 };
 
 function encode(data) {
@@ -67,10 +64,9 @@ const ContactUsPage = props => {
         <title>Contact | {props.data.site.siteMetadata.title}</title>
       </Helmet>
       <Box my={5}>
-        <Typography variant='h1' gutterBottom>
-          Contact
+        <Typography variant='h3' component='h1' gutterBottom>
+          Give me a shout
         </Typography>
-        <Typography variant='h3'>Give me a shout</Typography>
         <form
           name='contact-us'
           method='post'
@@ -87,46 +83,45 @@ const ContactUsPage = props => {
               Don’t fill this out: <input name='bot-field' />
             </label>
           </div>
-          <CustomTextField
+          <Box display='flex' flexDirection='column' maxWidth={480}>
+            <CustomTextField
+              type='text'
+              name='name'
+              value={values.name}
+              onChange={handleChange}
+              id='name'
+              label='Your name'
+              placeholder='Your name'
+            />
+            <CustomTextField
+              type='email'
+              name='email'
+              value={values.email}
+              onChange={handleChange}
+              id='email'
+              label='Your email'
+              placeholder='Your email'
+            />
+            <CustomTextField
+              multiline
+              rows='4'
+              name='message'
+              value={values.message}
+              onChange={handleChange}
+              id='message'
+              label='Your message'
+              placeholder='Your message'
+            />
+          </Box>
+          <SubmitButton
             variant='outlined'
-            type='text'
-            name='name'
-            value={values.name}
-            onChange={handleChange}
-            id='name'
-            label='Your name'
-            placeholder='Your name'
-            margin='normal'
-            required={true}
-          />
-          <CustomTextField
-            variant='outlined'
-            type='email'
-            name='email'
-            value={values.email}
-            onChange={handleChange}
-            id='email'
-            label='Your email'
-            placeholder='Your email'
-            margin='normal'
-            required={true}
-          />
-          <CustomTextField
-            variant='outlined'
-            type='textarea'
-            name='message'
-            value={values.message}
-            onChange={handleChange}
-            id='message'
-            label='Your message'
-            placeholder='Your message'
-            margin='normal'
-            required={true}
-          />
-          <Button type='submit'>
-            Send
-            <FontAwesomeIcon icon={faPaperPlane} className='ml-2' />
-          </Button>
+            color='primary'
+            size='large'
+            type='submit'
+          >
+            SEND
+            <SendIcon style={{ marginLeft: 8 }} />
+          </SubmitButton>
         </form>
       </Box>
     </Layout>
