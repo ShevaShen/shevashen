@@ -13,6 +13,18 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     {
+      resolve: `gatsby-plugin-material-ui`,
+      // If you want to use styled components, in conjunction to Material-UI, you should:
+      // - Change the injection order
+      // - Add the plugin
+      options: {
+        // stylesProvider: {
+        //   injectFirst: true,
+        // },
+      }
+      // 'gatsby-plugin-styled-components',
+    },
+    {
       // keep as first gatsby-source-filesystem plugin for gatsby image support
       resolve: 'gatsby-source-filesystem',
       options: {
