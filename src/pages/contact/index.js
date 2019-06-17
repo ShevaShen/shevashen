@@ -113,12 +113,7 @@ const ContactUsPage = props => {
               placeholder='Your message'
             />
           </Box>
-          <SubmitButton
-            variant='outlined'
-            color='primary'
-            size='large'
-            type='submit'
-          >
+          <SubmitButton variant='outlined' size='large' type='submit'>
             SEND
             <SendIcon style={{ marginLeft: 8 }} />
           </SubmitButton>

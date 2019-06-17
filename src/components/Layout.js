@@ -10,7 +10,7 @@ import Container from '@material-ui/core/Container';
 import theme from '../theme/instapaper/theme';
 
 const TemplateWrapper = ({ children }) => {
-  const { title, description } = useSiteMetadata();
+  const { title, description, keywords, author } = useSiteMetadata();
 
   return (
     <React.Fragment>
@@ -22,6 +22,8 @@ const TemplateWrapper = ({ children }) => {
           content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no'
         />
         <meta name='description' content={description} />
+        <meta name='keywords' content={keywords} />
+        <meta name='author' content={author} />
         <meta name='theme-color' content='#fff' />
 
         <meta property='og:type' content='personal' />

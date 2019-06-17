@@ -8,6 +8,8 @@ const useSiteMetadata = () => {
           siteMetadata {
             title
             description
+            keywords
+            author
             languages {
               defaultLangKey
               langs

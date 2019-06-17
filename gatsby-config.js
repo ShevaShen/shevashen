@@ -5,6 +5,8 @@ module.exports = {
     title: 'Sheva Shen | Vancouver based Front End Developr',
     description:
       'I am a Vancouver based front end developer. I specialize in web front end development with a solid UI/UX background.',
+    keywords: 'Freelance, Web Designer, Web Developer, Frontend Developer',
+    author: 'Sheva Shen',
     languages: {
       langs: ['en', 'cn'],
       defaultLangKey: 'en'
