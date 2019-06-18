@@ -7,6 +7,9 @@ import Hero from '../components/home/Hero';
 import TabsContent from '../components/home/TabsContent';
 import BlogRoll from '../components/BlogRoll';
 import Box from '@material-ui/core/Box';
+import atoms from '../components/atoms';
+
+const { Typography } = atoms;
 
 export const IndexPageTemplate = ({ title1, title2, description }) => {
   return (
@@ -14,7 +17,10 @@ export const IndexPageTemplate = ({ title1, title2, description }) => {
       <Box my={6}>
         <Hero title1={title1} title2={title2} description={description} />
       </Box>
-      <TabsContent />
+      <Typography variant='h5' color='primary' bold>
+        I am currently updating my site, stay tuned!
+      </Typography>
+      {/* <TabsContent /> */}
     </Layout>
   );
 };
