@@ -1,4 +1,13 @@
-export default ({ attach, nest, primary, theme, red, white, BUTTON, ICON }) => ({
+export default ({
+  attach,
+  nest,
+  primary,
+  theme,
+  red,
+  white,
+  BUTTON,
+  ICON
+}) => ({
   MuiButton: {
     root: {
       padding: '5px 9px',
@@ -6,62 +15,62 @@ export default ({ attach, nest, primary, theme, red, white, BUTTON, ICON }) => (
       minHeight: 30,
       [attach(BUTTON.inverted)]: {
         borderColor: white.secondary,
-        color: white.text,
+        color: white.text
       },
       [`${attach(BUTTON.inverted)}:hover`]: {
         borderColor: white.primary,
-        background: white.hint,
-      },
+        background: white.hint
+      }
     },
     label: {
-      textTransform: 'none',
+      // textTransform: 'none',
       fontWeight: 600,
       lineHeight: '18px',
       [nest(ICON.root)]: {
-        fontSize: 20,
+        fontSize: 20
       },
       [nest(ICON.left)]: {
-        marginRight: theme.spacing(1),
+        marginRight: theme.spacing(1)
       },
       [nest(ICON.right)]: {
-        marginLeft: theme.spacing(1),
-      },
+        marginLeft: theme.spacing(1)
+      }
     },
     outlined: {
       borderColor: '#dbdbdb',
       '&$disabled.inverted': {
         borderColor: white.text,
-        color: white.text,
-      },
+        color: white.text
+      }
     },
     contained: {
       borderColor: primary.main,
       boxShadow: theme.shadows[0],
       '&$focusVisible': {
-        boxShadow: theme.shadows[0],
+        boxShadow: theme.shadows[0]
       },
       '&:active': {
-        boxShadow: theme.shadows[0],
+        boxShadow: theme.shadows[0]
       },
       '&$disabled': {
-        boxShadow: theme.shadows[0],
+        boxShadow: theme.shadows[0]
       },
       [attach(BUTTON.danger)]: {
         color: white.text,
-        background: red.main,
+        background: red.main
       },
       [`${attach(BUTTON.danger)}:hover`]: {
-        background: red.dark,
-      },
+        background: red.dark
+      }
     },
     containedPrimary: {
       color: theme.palette.common.white,
       '&:hover': {
-        backgroundColor: primary.main,
+        backgroundColor: primary.main
       },
       '&:active': {
-        opacity: 0.6,
-      },
-    },
-  },
+        opacity: 0.6
+      }
+    }
+  }
 });

@@ -114,7 +114,7 @@ const ContactUsPage = props => {
             />
           </Box>
           <SubmitButton variant='outlined' size='large' type='submit'>
-            SEND
+            Send
             <SendIcon style={{ marginLeft: 8 }} />
           </SubmitButton>
         </form>
