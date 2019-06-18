@@ -1,15 +1,16 @@
-import React from 'react'
-import Layout from '../../components/Layout'
+import React from 'react';
+import Box from '@material-ui/core/Box';
+import Layout from '../../components/Layout';
+import atoms from '../../components/atoms';
+
+const { Typography } = atoms;
 
 export default () => (
   <Layout>
-    <section className="section">
-      <div className="container">
-        <div className="content">
-          <h1>Thank you!</h1>
-          <p>This is a custom thank you page for form submissions</p>
-        </div>
-      </div>
-    </section>
+    <Box my={4}>
+      <Typography variant='h5' component='h1' gutterBottom>
+        Thank you for your message! I will get back to you ASAP!
+      </Typography>
+    </Box>
   </Layout>
-)
+);

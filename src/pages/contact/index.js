@@ -51,7 +51,7 @@ const ContactUsPage = props => {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encode({
         'form-name': form.getAttribute('name'),
-        ...this.state
+        ...values
       })
     })
       .then(() => navigate(form.getAttribute('action')))
@@ -68,9 +68,9 @@ const ContactUsPage = props => {
           Give me a shout
         </Typography>
         <form
-          name='contact-us'
+          name='contact'
           method='post'
-          action='/contact-us/thanks/'
+          action='/contact/thanks'
           data-netlify='true'
           data-netlify-honeypot='bot-field'
           onSubmit={handleSubmit}
