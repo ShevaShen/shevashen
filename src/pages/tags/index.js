@@ -1,44 +1,59 @@
-import React from 'react'
-import { kebabCase } from 'lodash'
-import Helmet from 'react-helmet'
-import { Link, graphql } from 'gatsby'
-import Layout from '../../components/Layout'
+import React from 'react';
+import { kebabCase } from 'lodash';
+import Helmet from 'react-helmet';
+import { Link as RouterLink, graphql } from 'gatsby';
+import Layout from '../../components/Layout';
+import Box from '@material-ui/core/Box';
+import Typography from '../../components/atoms/Typography';
+import List from '../../components/molecules/List';
+import ListItem from '../../components/molecules/ListItem';
+import { makeStyles } from '@material-ui/core/styles';
+import Link from '@material-ui/core/Link';
+
+const useStyles = makeStyles(() => ({
+  list: {
+    backgroundColor: 'transparent'
+  }
+}));
 
 const TagsPage = ({
   data: {
     allMarkdownRemark: { group },
     site: {
-      siteMetadata: { title },
-    },
-  },
-}) => (
-  <Layout>
-    <section className="section">
-      <Helmet title={`Tags | ${title}`} />
-      <div className="container content">
-        <div className="columns">
-          <div
-            className="column is-10 is-offset-1"
-            style={{ marginBottom: '6rem' }}
-          >
-            <h1 className="title is-size-2 is-bold-light">Tags</h1>
-            <ul className="taglist">
-              {group.map(tag => (
-                <li key={tag.fieldValue}>
-                  <Link to={`/tags/${kebabCase(tag.fieldValue)}/`}>
-                    {tag.fieldValue} ({tag.totalCount})
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-  </Layout>
-)
+      siteMetadata: { title }
+    }
+  }
+}) => {
+  const classes = useStyles();
 
-export default TagsPage
+  return (
+    <Layout>
+      <Box>
+        <Helmet title={`Tags | ${title}`} />
+        <Box my={3}>
+          <Typography variant='h5' gutterBottom bold>
+            Tags
+          </Typography>
+          <List dense={true} className={classes.list}>
+            {group.map(tag => (
+              <ListItem key={tag.fieldValue}>
+                <Link
+                  component={RouterLink}
+                  to={`/tags/${kebabCase(tag.fieldValue)}/`}
+                  color='inherit'
+                >
+                  {tag.fieldValue} ({tag.totalCount})
+                </Link>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
+      </Box>
+    </Layout>
+  );
+};
+
+export default TagsPage;
 
 export const tagPageQuery = graphql`
   query TagsQuery {
@@ -54,4 +69,4 @@ export const tagPageQuery = graphql`
       }
     }
   }
-`
+`;
