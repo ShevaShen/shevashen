@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link } from 'gatsby';
 import { makeStyles } from '@material-ui/core/styles';
 import molecules from '../molecules';
 import atoms from '../atoms';
 import PlaceholderImg from '../../../static/img/portfolio-placeholder.jpg';
 import PostDrawer from '../Post/PostDrawer';
 
-const { Card, CardActionArea, CardActions, CardContent, CardMedia } = molecules;
+const { Card, CardActions, CardContent, CardMedia } = molecules;
 const { Typography } = atoms;
 
 const useStyles = makeStyles({
