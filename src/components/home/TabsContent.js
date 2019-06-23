@@ -9,7 +9,35 @@ const { Tabs, Tab } = molecules;
 const TabsContent = props => {
   const [tabIndex, setTabIndex] = useState(0);
 
-  console.log(tabIndex);
+  const renderTabContent = index => {
+    switch (index) {
+      case 0:
+        return (
+          <Grid item sm={4}>
+            <TabCard />
+          </Grid>
+        );
+      case 1:
+        return (
+          <Grid item>There is no Story at the monent, check back later?</Grid>
+        );
+      case 2:
+        return (
+          <Grid item>
+            I am working on my portfolio at the monent, check back later?
+          </Grid>
+        );
+      case 3:
+        return (
+          <Grid item>
+            There are too many clients I've worked with, trying to organize them
+            in a better way :P, check back later?
+          </Grid>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <Box>
@@ -26,23 +54,7 @@ const TabsContent = props => {
         <Tab label='Clients' />
       </Tabs>
       <Grid container spacing={4}>
-        <Grid item sm={4}>
-          <TabCard />
-        </Grid>
-        <Grid item sm={4}>
-          <img
-            alt='post'
-            style={{ width: '100%' }}
-            src='https://via.placeholder.com/500/f5f5f5'
-          />
-        </Grid>
-        <Grid item sm={4}>
-          <img
-            alt='post'
-            style={{ width: '100%' }}
-            src='https://via.placeholder.com/500/f5f5f5'
-          />
-        </Grid>
+        {renderTabContent(tabIndex)}
       </Grid>
     </Box>
   );
