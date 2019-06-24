@@ -12,23 +12,24 @@ const TabsContent = props => {
   const [tabIndex, setTabIndex] = useState(0);
   const { edges: posts } = props.data.allMarkdownRemark;
 
-  console.log(props.data);
-
   const renderTabContent = index => {
     switch (index) {
       case 0:
         return (
-          <Grid item sm={4}>
-            {posts &&
-              posts.map(({ node: post }) => (
-                <TabCard
-                  key={post.id}
-                  headerImg={post.frontmatter.headerImage}
-                  title={post.frontmatter.title}
-                  excerpt={post.frontmatter.excerpt}
-                  link={post.fields.slug}
-                />
-              ))}
+          // <Grid item sm={4}>
+          //   {posts &&
+          //     posts.map(({ node: post }) => (
+          //       <TabCard
+          //         key={post.id}
+          //         headerImg={post.frontmatter.headerImage}
+          //         title={post.frontmatter.title}
+          //         excerpt={post.frontmatter.excerpt}
+          //         link={post.fields.slug}
+          //       />
+          //     ))}
+          // </Grid>
+          <Grid item>
+            Since the other three tabs are empty, this one is empty too :P
           </Grid>
         );
       case 1:

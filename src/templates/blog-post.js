@@ -10,6 +10,7 @@ import Box from '@material-ui/core/Box';
 import atoms from '../components/atoms';
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
 import PlaceholderImg from '../../static/img/placeholder.jpg';
+import PostMetaData from '../components/Post/PostMetaData';
 
 const useStyles = makeStyles(theme => ({
   headerImg: {
@@ -58,10 +59,7 @@ export const BlogPostTemplate = ({
         <Typography variant='h3' component='h1' display='block'>
           {title}
         </Typography>
-        <Typography variant='caption' display='block'>
-          {isFeatured && 'featured | '}
-          {category} | {date}
-        </Typography>
+        <PostMetaData isFeatured={isFeatured} category={category} date={date} />
       </Box>
       <Box fontSize='body1' mt={3} mb={6}>
         <PostContent content={content} />
