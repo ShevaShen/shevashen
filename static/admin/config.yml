@@ -23,7 +23,26 @@ collections:
         }
       - { label: 'Title', name: 'title', widget: 'string' }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-      - { label: 'Description', name: 'description', widget: 'text' }
+      - { label: 'Excerpt', name: 'excerpt', widget: 'text', required: false }
+      - {
+          label: 'Header Image',
+          name: 'headerImage',
+          widget: 'image',
+          required: false,
+          default: '/img/portfolio-placeholder.jpg',
+        }
+      - {
+          label: 'isFeatured (if ture, the post will add to the featured tab)',
+          name: 'isFeatured',
+          widget: 'boolean',
+          default: false,
+        }
+      - {
+          label: 'Category',
+          name: 'category',
+          widget: 'select',
+          options: ['story', 'work'],
+        }
       - { label: 'Body', name: 'body', widget: 'markdown' }
       - { label: 'Tags', name: 'tags', widget: 'list' }
   - name: 'blog_chinese'
@@ -42,34 +61,28 @@ collections:
         }
       - { label: '标题', name: 'title', widget: 'string' }
       - { label: '发布日期', name: 'date', widget: 'datetime' }
-      - { label: '描述', name: 'description', widget: 'text' }
-      - { label: '正文', name: 'body', widget: 'markdown' }
-      - { label: '标签', name: 'tags', widget: 'list' }
-  - name: 'portfolio'
-    label: 'Portfolio'
-    folder: 'src/pages/portfolio'
-    create: true
-    slug: '{{slug}}'
-    fields:
+      - { label: '摘抄', name: 'excerpt', widget: 'text', required: false }
       - {
-          label: 'Template Key',
-          name: 'templateKey',
-          widget: 'hidden',
-          default: 'portfolio-post',
-        }
-      - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
-      - { label: 'Description', name: 'description', widget: 'text' }
-      - { label: 'Body', name: 'body', widget: 'markdown' }
-      - { label: 'Tags', name: 'tags', widget: 'list' }
-      - { label: 'Link', name: 'link', widget: 'string', required: false }
-      - {
-          label: 'Image',
-          name: 'image',
+          label: '头部图片',
+          name: 'headerImage',
           widget: 'image',
           required: false,
           default: '/img/portfolio-placeholder.jpg',
         }
+      - {
+          label: '是否设为精选',
+          name: 'isFeatured',
+          widget: 'boolean',
+          default: false,
+        }
+      - {
+          label: '类别',
+          name: 'category',
+          widget: 'select',
+          options: ['故事', '作品'],
+        }
+      - { label: '正文', name: 'body', widget: 'markdown' }
+      - { label: '标签', name: 'tags', widget: 'list' }
   - name: 'pages'
     label: 'Pages'
     files:
@@ -96,20 +109,6 @@ collections:
               name: 'templateKey',
               widget: 'hidden',
               default: 'index-page',
-            }
-          - { label: Title, name: title, widget: string }
-          - { label: Heading, name: heading, widget: string }
-          - { label: Subheading, name: subheading, widget: string }
-          - { label: Description, name: description, widget: string }
-      - file: 'src/pages/portfolio/index.md'
-        label: 'Portfolio Page'
-        name: 'portfolio'
-        fields:
-          - {
-              label: 'Template Key',
-              name: 'templateKey',
-              widget: 'hidden',
-              default: 'portfolio-page',
             }
           - { label: Title, name: title, widget: string }
           - { label: Heading, name: heading, widget: string }

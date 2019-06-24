@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Container from '@material-ui/core/Container';
 import atoms from '../atoms';
-import PlaceholderImg from '../../../static/img/portfolio-placeholder.jpg';
+import PlaceholderImg from '../../../static/img/placeholder.jpg';
 import PreviewCompatibleImage from '../PreviewCompatibleImage';
 
 const useStyles = makeStyles(theme => ({

@@ -17,10 +17,10 @@ const Footer = () => {
   const classes = useStyles();
 
   return (
-    <Box component="footer">
-      <Container maxWidth="md">
+    <Box component='footer' mb={4}>
+      <Container maxWidth='md'>
         <Divider className={classes.divider} />
-        <Typography variant="body2">&copy; GreenFish Digital 2019</Typography>
+        <Typography variant='body2'>&copy; SHEVASHEN 2019</Typography>
       </Container>
     </Box>
   );

@@ -2,7 +2,10 @@
 templateKey: blog-post
 title: First English Blog Post
 date: 2019-04-24T03:14:39.085Z
-description: this is the very first post
+excerpt: this is the very first post
+headerImage: /img/placeholder.jpg
+isFeatured: true
+category: story
 tags:
   - language
   - english

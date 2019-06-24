@@ -1,9 +1,11 @@
 import React from 'react';
+import { Link } from 'gatsby';
 import { makeStyles } from '@material-ui/core/styles';
 import molecules from '../molecules';
 import atoms from '../atoms';
-import PlaceholderImg from '../../../static/img/portfolio-placeholder.jpg';
-import PostDrawer from '../Post/PostDrawer';
+import PlaceholderImg from '../../../static/img/placeholder.jpg';
+// import PostDrawer from '../Post/PostDrawer';
+import Button from '../atoms/Button';
 
 const { Card, CardActions, CardContent, CardMedia } = molecules;
 const { Typography } = atoms;
@@ -16,25 +18,27 @@ const useStyles = makeStyles({
 
 const TabCard = props => {
   const classes = useStyles();
+  const { title, excerpt, headerImg, link } = props;
 
   return (
     <Card>
       <CardMedia
         className={classes.media}
-        image={PlaceholderImg}
-        title='Contemplative Reptile'
+        image={headerImg ? headerImg.childImageSharp.fluid.src : PlaceholderImg}
+        title={title}
       />
       <CardContent>
         <Typography gutterBottom variant='h5' component='h2'>
-          Lizard
+          {title}
         </Typography>
         <Typography variant='body2' color='textSecondary' component='p'>
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+          {excerpt}
         </Typography>
       </CardContent>
       <CardActions>
-        <PostDrawer />
+        <Button component={Link} to={link}>
+          Learn more
+        </Button>
       </CardActions>
     </Card>
   );
