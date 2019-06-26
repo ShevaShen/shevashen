@@ -6,6 +6,8 @@ import { graphql, Link } from 'gatsby';
 import Layout from '../components/Layout';
 import Content, { HTMLContent } from '../components/Content';
 import { makeStyles } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Box from '@material-ui/core/Box';
 import atoms from '../components/atoms';
 import PreviewCompatibleImage from '../components/PreviewCompatibleImage';
@@ -50,18 +52,20 @@ export const BlogPostTemplate = ({
         image: PlaceholderImg,
         className: classes.headerImg
       };
+  const theme = useTheme();
+  const smUp = useMediaQuery(theme.breakpoints.up('sm'));
 
   return (
     <Box>
       {helmet || ''}
       <PreviewCompatibleImage imageInfo={imageInfo} />
       <Box my={3}>
-        <Typography variant='h3' component='h1' display='block'>
+        <Typography variant={smUp ? 'h3' : 'h4'} component='h1' display='block'>
           {title}
         </Typography>
         <PostMetaData isFeatured={isFeatured} category={category} date={date} />
       </Box>
-      <Box fontSize='body1' mt={3} mb={6}>
+      <Box fontSize='body1.fontSize' mt={3} mb={6}>
         <PostContent content={content} />
       </Box>
       <Box mb={3}>

@@ -11,8 +11,17 @@ const { Card, CardActionArea, CardActions, CardContent, CardMedia } = molecules;
 const { Typography } = atoms;
 
 const useStyles = makeStyles({
+  card: {
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+  },
   media: {
     height: 140
+  },
+  title: {
+    lineHeight: '1.4'
   }
 });
 
@@ -21,7 +30,7 @@ const TabCard = props => {
   const { title, excerpt, headerImg, link } = props;
 
   return (
-    <Card>
+    <Card className={classes.card}>
       <CardActionArea component={Link} to={link}>
         <CardMedia
           className={classes.media}
@@ -31,7 +40,13 @@ const TabCard = props => {
           title={title}
         />
         <CardContent>
-          <Typography gutterBottom variant='h5' component='h2'>
+          <Typography
+            gutterBottom
+            variant='h6'
+            component='h3'
+            bold
+            className={classes.title}
+          >
             {title}
           </Typography>
           <Typography variant='body2' color='textSecondary' component='p'>

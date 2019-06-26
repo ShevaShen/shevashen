@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Link, graphql, StaticQuery } from 'gatsby';
+import { graphql, StaticQuery } from 'gatsby';
 import Grid from '@material-ui/core/Grid';
 import molecules from '../molecules';
 import Box from '@material-ui/core/Box';
@@ -12,47 +12,39 @@ const TabsContent = props => {
   const [tabIndex, setTabIndex] = useState(0);
   const { edges: posts } = props.data.allMarkdownRemark;
 
-  const renderTabContent = index => {
+  const filterTabContent = (index, posts) => {
     switch (index) {
       case 0:
-        return (
-          // <Grid item sm={4}>
-          //   {posts &&
-          //     posts.map(({ node: post }) => (
-          //       <TabCard
-          //         key={post.id}
-          //         headerImg={post.frontmatter.headerImage}
-          //         title={post.frontmatter.title}
-          //         excerpt={post.frontmatter.excerpt}
-          //         link={post.fields.slug}
-          //       />
-          //     ))}
-          // </Grid>
-          <Grid item>
-            Since the other three tabs are empty, this one is empty too :P
-          </Grid>
-        );
+        return posts.filter(({ node: post }) => post.frontmatter.isFeatured);
       case 1:
-        return (
-          <Grid item>There is no Story at the monent, check back later?</Grid>
+        return posts.filter(
+          ({ node: post }) => post.frontmatter.category === 'story'
         );
       case 2:
-        return (
-          <Grid item>
-            I am working on my portfolio at the monent, check back later?
-          </Grid>
+        return posts.filter(
+          ({ node: post }) => post.frontmatter.category === 'work'
         );
+      default:
+        return [];
+    }
+  };
+
+  const renderTabFallbackContent = index => {
+    switch (index) {
+      case 0:
+        return 'Since the other three tabs are empty, this one is empty too :P';
+      case 1:
+        return 'There is no Story at the monent, check back later?';
+      case 2:
+        return 'I am working on my portfolio at the monent, check back later?';
       case 3:
-        return (
-          <Grid item>
-            There are too many clients I've worked with, trying to organize them
-            in a better way :P, check back later?
-          </Grid>
-        );
+        return "There are too many clients I've worked with, trying to organize them in a better way :P, check back later";
       default:
         return null;
     }
   };
+
+  const currentTabPosts = posts ? filterTabContent(tabIndex, posts) : [];
 
   return (
     <Box>
@@ -69,7 +61,24 @@ const TabsContent = props => {
         <Tab label='Clients' />
       </Tabs>
       <Grid container spacing={4}>
-        {renderTabContent(tabIndex)}
+        {currentTabPosts.length > 0 ? (
+          currentTabPosts.map(({ node: post }) => {
+            const { headerImage, title, excerpt } = post.frontmatter;
+
+            return (
+              <Grid key={post.id} item xs={12} sm={6} md={4}>
+                <TabCard
+                  headerImg={headerImage}
+                  title={title}
+                  excerpt={excerpt}
+                  link={post.fields.slug}
+                />
+              </Grid>
+            );
+          })
+        ) : (
+          <Grid item>{renderTabFallbackContent(tabIndex)}</Grid>
+        )}
       </Grid>
     </Box>
   );
@@ -83,13 +92,17 @@ TabsContent.propTypes = {
   })
 };
 
+// currently, the static query will only query the english version
 export default () => (
   <StaticQuery
     query={graphql`
       query TabsContentQuery {
         allMarkdownRemark(
           sort: { order: DESC, fields: [frontmatter___date] }
-          filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
+          filter: {
+            frontmatter: { templateKey: { eq: "blog-post" } }
+            fields: { langKey: { eq: "en" } }
+          }
         ) {
           edges {
             node {
@@ -102,6 +115,8 @@ export default () => (
               frontmatter {
                 title
                 templateKey
+                isFeatured
+                category
                 excerpt
                 headerImage {
                   childImageSharp {
