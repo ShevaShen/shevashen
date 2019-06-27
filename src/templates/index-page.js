@@ -1,21 +1,27 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 
 import Layout from '../components/Layout';
 import Hero from '../components/home/Hero';
 import TabsContent from '../components/home/TabsContent';
-import BlogRoll from '../components/BlogRoll';
+
 import Box from '@material-ui/core/Box';
 
-export const IndexPageTemplate = ({ title1, title2, description }) => {
+export const IndexPageTemplate = ({
+  title1,
+  title2,
+  description,
+  location
+}) => {
+  const hash = location.hash.replace('#', '');
+
   return (
     <Layout>
       <Box my={6}>
         <Hero title1={title1} title2={title2} description={description} />
       </Box>
-
-      <TabsContent />
+      <TabsContent currentTab={hash} />
     </Layout>
   );
 };
@@ -26,7 +32,7 @@ IndexPageTemplate.propTypes = {
   description: PropTypes.string
 };
 
-const IndexPage = ({ data }) => {
+const IndexPage = ({ data, location }) => {
   const { frontmatter } = data.markdownRemark;
 
   return (
@@ -34,6 +40,7 @@ const IndexPage = ({ data }) => {
       title1={frontmatter.title1}
       title2={frontmatter.title2}
       description={frontmatter.description}
+      location={location}
     />
   );
 };

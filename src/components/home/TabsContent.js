@@ -1,16 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { navigate } from 'gatsby';
 import { graphql, StaticQuery } from 'gatsby';
 import Grid from '@material-ui/core/Grid';
 import molecules from '../molecules';
 import Box from '@material-ui/core/Box';
 import TabCard from './TabCard';
+import { tabsData, renderTabFallbackContent } from './TabsData';
 
 const { Tabs, Tab } = molecules;
 
 const TabsContent = props => {
-  const [tabIndex, setTabIndex] = useState(0);
   const { edges: posts } = props.data.allMarkdownRemark;
+  const { currentTab } = props;
+
+  const [tabIndex, setTabIndex] = useState(0);
+
+  useEffect(() => {
+    if (currentTab) {
+      const currentTabData = tabsData.find(tab => tab.value === currentTab);
+      setTabIndex(currentTabData.index);
+    }
+  }, [currentTab]);
 
   const filterTabContent = (index, posts) => {
     switch (index) {
@@ -29,21 +40,6 @@ const TabsContent = props => {
     }
   };
 
-  const renderTabFallbackContent = index => {
-    switch (index) {
-      case 0:
-        return 'Since the other three tabs are empty, this one is empty too :P';
-      case 1:
-        return 'There is no Story at the monent, check back later?';
-      case 2:
-        return 'I am working on my portfolio at the monent, check back later?';
-      case 3:
-        return "There are too many clients I've worked with, trying to organize them in a better way :P, check back later";
-      default:
-        return null;
-    }
-  };
-
   const currentTabPosts = posts ? filterTabContent(tabIndex, posts) : [];
 
   return (
@@ -53,12 +49,12 @@ const TabsContent = props => {
         centered
         onChange={(event, value) => {
           setTabIndex(value);
+          navigate(`/#${tabsData[value].value}`);
         }}
       >
-        <Tab label='Featured' />
-        <Tab label='Stories' />
-        <Tab label='Works' />
-        <Tab label='Clients' />
+        {tabsData.map(tab => (
+          <Tab label={tab.label} key={`home_tab_${tab.value}`} />
+        ))}
       </Tabs>
       <Grid container spacing={4}>
         {currentTabPosts.length > 0 ? (
@@ -93,7 +89,7 @@ TabsContent.propTypes = {
 };
 
 // currently, the static query will only query the english version
-export default () => (
+export default props => (
   <StaticQuery
     query={graphql`
       query TabsContentQuery {
@@ -131,6 +127,8 @@ export default () => (
         }
       }
     `}
-    render={(data, count) => <TabsContent data={data} count={count} />}
+    render={(data, count) => (
+      <TabsContent data={data} count={count} {...props} />
+    )}
   />
 );
