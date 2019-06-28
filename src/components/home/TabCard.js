@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     justifyContent: 'space-between'
   },
   media: {
-    height: 140
+    height: 180
   },
   title: {
     lineHeight: '1.4'

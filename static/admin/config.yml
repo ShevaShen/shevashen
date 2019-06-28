@@ -79,7 +79,7 @@ collections:
           label: '类别',
           name: 'category',
           widget: 'select',
-          options: ['故事', '作品'],
+          options: ['story', 'work'],
         }
       - { label: '正文', name: 'body', widget: 'markdown' }
       - { label: '标签', name: 'tags', widget: 'list' }

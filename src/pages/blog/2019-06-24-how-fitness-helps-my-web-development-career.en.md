@@ -2,7 +2,7 @@
 templateKey: blog-post
 title: How Fitness Helps My Web Development Career
 date: 2019-06-24T03:14:39.085Z
-excerpt: The picture is 5 years apart, 2014 vs 2019. This is my on-going fitness & web development journey.
+excerpt: The photos are 5 years apart, 2014 vs 2019. This is my on-going fitness & web development journey.
 headerImage: /img/before-after.jpg
 isFeatured: true
 category: story
@@ -11,7 +11,7 @@ tags:
   - motivation
   - career
 ---
-First of all, the photo here is 5 years apart. The photo on the left was taken in August 2014, and the one on the right was taken in May 2019.
+First of all, the photos here are 5 years apart. The photo on the left was taken in August 2014, and the one on the right was taken in May 2019.
 
 I began this journey the beginning of 2014 when I found myself often feel extremely tired and no energy after a day of sitting in front of a computer. The lower back pain was the thing I have to deal with pretty much every day at the age of only 25. It was not that I worked super hard. I didn't have a clear career goal. And I didn't know if web development was the way to go either.
 
