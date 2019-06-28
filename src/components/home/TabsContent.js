@@ -7,6 +7,7 @@ import molecules from '../molecules';
 import Box from '@material-ui/core/Box';
 import TabCard from './TabCard';
 import { tabsData, renderTabFallbackContent } from './TabsData';
+import { selectedLanguage } from '../LanguageToggler';
 
 const { Tabs, Tab } = molecules;
 
@@ -40,7 +41,15 @@ const TabsContent = props => {
     }
   };
 
-  const currentTabPosts = posts ? filterTabContent(tabIndex, posts) : [];
+  const currentLang = selectedLanguage();
+
+  const filteredPosts = posts.filter(
+    ({ node: post }) => post.fields.langKey === currentLang
+  );
+
+  const currentTabPosts = filteredPosts
+    ? filterTabContent(tabIndex, filteredPosts)
+    : [];
 
   return (
     <Box>
@@ -88,17 +97,13 @@ TabsContent.propTypes = {
   })
 };
 
-// currently, the static query will only query the english version
 export default props => (
   <StaticQuery
     query={graphql`
       query TabsContentQuery {
         allMarkdownRemark(
           sort: { order: DESC, fields: [frontmatter___date] }
-          filter: {
-            frontmatter: { templateKey: { eq: "blog-post" } }
-            fields: { langKey: { eq: "en" } }
-          }
+          filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
         ) {
           edges {
             node {

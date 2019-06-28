@@ -3,7 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Grid from '@material-ui/core/Grid';
 import atoms from '../atoms';
 import SideNav from './SideNav';
-// import LanguageToggler from '../LanguageToggler';
+import LanguageToggler from '../LanguageToggler';
 
 const { Toolbar } = atoms;
 
@@ -13,7 +13,7 @@ const Header = () => {
       <Toolbar narrow>
         <Grid container justify='space-between' alignItems='center'>
           <SideNav />
-          {/* <LanguageToggler /> */}
+          <LanguageToggler />
         </Grid>
       </Toolbar>
     </AppBar>
