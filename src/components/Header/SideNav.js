@@ -7,6 +7,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SideProfile from './SideProfile';
 import Divider from '../atoms/Divider';
 import molecules from '../molecules';
+import { pathPrefix } from '../LanguageToggler';
 
 const { List, ListItem, ListItemText } = molecules;
 
@@ -46,7 +47,7 @@ const SideNav = () => {
         {navData.map(item => (
           <ListItem
             button
-            to={item.path}
+            to={`${pathPrefix()}${item.path}`}
             component={RouterLink}
             key={item.label}
           >

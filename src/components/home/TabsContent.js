@@ -7,7 +7,7 @@ import molecules from '../molecules';
 import Box from '@material-ui/core/Box';
 import TabCard from './TabCard';
 import { tabsData, renderTabFallbackContent } from './TabsData';
-import { selectedLanguage } from '../LanguageToggler';
+import { selectedLanguage, pathPrefix } from '../LanguageToggler';
 
 const { Tabs, Tab } = molecules;
 
@@ -58,7 +58,7 @@ const TabsContent = props => {
         centered
         onChange={(event, value) => {
           setTabIndex(value);
-          navigate(`/#${tabsData[value].value}`);
+          navigate(`${pathPrefix()}/#${tabsData[value].value}`);
         }}
       >
         {tabsData.map(tab => (

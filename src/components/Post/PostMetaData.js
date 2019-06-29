@@ -9,6 +9,7 @@ import Box from '@material-ui/core/Box';
 import IconCategory from '@material-ui/icons/Category';
 import IconDate from '@material-ui/icons/DateRange';
 import IconFeatured from '@material-ui/icons/Star';
+import { pathPrefix } from '../LanguageToggler';
 
 const useStyles = makeStyles(theme => ({
   button: {
@@ -31,7 +32,11 @@ const PostMetaData = props => {
     <Box mt={1}>
       <Typography variant='caption' display='block'>
         {isFeatured && (
-          <Button className={classes.button} component={Link} to='/#featured'>
+          <Button
+            className={classes.button}
+            component={Link}
+            to={`${pathPrefix()}/#featured`}
+          >
             <IconFeatured className={classes.buttonIcon} />
             featured
           </Button>
@@ -39,7 +44,7 @@ const PostMetaData = props => {
         <Button
           className={classes.button}
           component={Link}
-          to={`/#${category}`}
+          to={`${pathPrefix()}/#${category}`}
         >
           <IconCategory className={classes.buttonIcon} />
           {category}
