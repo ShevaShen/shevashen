@@ -1,7 +1,7 @@
 ---
 templateKey: blog-post
 title: Sodagar Nielsen Law Group
-date: 2020-03-23T14:52:48.751Z
+date: 2020-02-20T15:52:48.751Z
 excerpt: Freelance Project at GreenFish Digital
 headerImage: /img/snlaw.png
 isFeatured: false
