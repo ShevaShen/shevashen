@@ -1,10 +1,10 @@
 ---
 templateKey: blog-post
 title: Fudos - Give Kudos to Food
-date: 2020-03-23T14:40:50.348Z
+date: 2018-12-01T15:40:50.348Z
 excerpt: Front End Developer at m56 Studios - 2018
 headerImage: /img/fudos.png
-isFeatured: false
+isFeatured: true
 category: work
 tags:
   - web app
