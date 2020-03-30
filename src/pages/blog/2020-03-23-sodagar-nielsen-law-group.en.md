@@ -14,6 +14,7 @@ tags:
   - gatsby
   - ui
   - logo design
+  - responsive web design
 ---
 This is a freelance project I did for Sodagar Nielsen Law Group. They are an amazing client and I am so grateful that I got the chance to work with them.
 
