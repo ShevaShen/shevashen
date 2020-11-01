@@ -4,7 +4,7 @@ title: Realtor.com Marketing Portal Redesign
 date: 2018-05-01T15:05:25.821Z
 excerpt: Front End Developer at Realtor.com - 2014 to 2018
 headerImage: /img/mrc.png
-isFeatured: true
+isFeatured: false
 category: work
 tags:
   - website
