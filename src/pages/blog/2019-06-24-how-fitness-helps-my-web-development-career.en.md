@@ -1,13 +1,15 @@
 ---
 templateKey: blog-post
 title: How Fitness Helps My Web Development Career
-date: 2019-06-24T03:14:39.085Z
-excerpt: The photos are 5 years apart, 2014 vs 2019. This is my on-going fitness & web development journey.
+date: 2020-11-01T22:02:39.085Z
+excerpt: >-
+  The photos are 5 years apart, 2014 vs 2019. This is my on-going fitness & web
+  development journey.
 headerImage: /img/before-after.jpg
 isFeatured: true
 category: story
 tags:
-  - fitness  
+  - fitness
   - motivation
   - career
 ---
