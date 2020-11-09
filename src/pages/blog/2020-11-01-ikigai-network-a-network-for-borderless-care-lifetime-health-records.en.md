@@ -3,7 +3,7 @@ templateKey: blog-post
 title: Ikigai Network - a network for borderless care & lifetime health records
 date: 2020-11-01T21:48:12.070Z
 excerpt: A website I launched within 3 days
-headerImage: /img/ikigainetwork.png
+headerImage: /img/ikigainetwork1.png
 isFeatured: false
 category: work
 tags:
