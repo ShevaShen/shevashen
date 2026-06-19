@@ -1,0 +1,73 @@
+---
+import "../styles/global.css";
+import { navItems, site } from "../data/site.js";
+
+const {
+  title = site.title,
+  description = site.description,
+  canonical,
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const canonicalUrl =
+  canonical || new URL(currentPath, "https://shevashen.com").toString();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content="/img/ai-platform-hero.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <nav class="container nav" aria-label="Primary">
+          <a class="brand" href="/">
+            <strong>{site.name}</strong>
+            <span>AI Platform Leader</span>
+          </a>
+          <div class="nav-links">
+            {
+              navItems.map((item) => {
+                const isCurrent =
+                  item.href === "/"
+                    ? currentPath === "/"
+                    : currentPath.startsWith(item.href);
+
+                return (
+                  <a
+                    href={item.href}
+                    aria-current={isCurrent ? "page" : undefined}
+                  >
+                    {item.label}
+                  </a>
+                );
+              })
+            }
+          </div>
+        </nav>
+      </header>
+      <main>
+        <slot />
+      </main>
+      <footer class="site-footer">
+        <div class="container">
+          <span>© {new Date().getFullYear()} Sheva Shen</span>
+          <span
+            >Enterprise AI platforms, agent systems, and engineering leadership.</span
+          >
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

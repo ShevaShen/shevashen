@@ -1,0 +1,48 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+
+const archived = [
+  {
+    title: "Legacy Frontend Projects",
+    text: "Earlier client and product work from the Gatsby portfolio era, including marketing portals, community tools, and product redesigns.",
+  },
+  {
+    title: "Design & Photography",
+    text: "Creative background preserved as context for product taste, visual systems, and communication craft.",
+  },
+  {
+    title: "Fitness & Personal Writing",
+    text: "Older personal essays and non-AI writing moved out of the primary navigation to keep the new positioning focused.",
+  },
+];
+---
+
+<BaseLayout
+  title="Archive — Sheva Shen"
+  description="Archived legacy portfolio material from earlier frontend, design, photography, and personal writing eras."
+>
+  <PageHero
+    eyebrow="Archive"
+    title="Legacy work, preserved but de-emphasized."
+    description="The site now centers AI platform leadership. Older frontend, design, photography, and personal writing material remains useful context, but no longer defines the primary narrative."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="card-grid">
+        {
+          archived.map((item) => (
+            <article class="archive-item">
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))
+        }
+      </div>
+      <div class="link-row">
+        <a class="button" href="/about/">Read the evolution story</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

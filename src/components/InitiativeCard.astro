@@ -1,0 +1,11 @@
+---
+const { initiative } = Astro.props;
+---
+
+<article class="initiative-card">
+  <h3>{initiative.title}</h3>
+  <p>{initiative.summary}</p>
+  <ul class="tag-list" aria-label={`${initiative.title} topics`}>
+    {initiative.points.map((point) => <li>{point}</li>)}
+  </ul>
+</article>

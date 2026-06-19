@@ -1,0 +1,66 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import InitiativeCard from "../components/InitiativeCard.astro";
+import PageHero from "../components/PageHero.astro";
+import { initiatives } from "../data/site.js";
+---
+
+<BaseLayout
+  title="AI Initiatives — Sheva Shen"
+  description="Strategic AI initiatives across enterprise AI adoption, agent platforms, knowledge retrieval, AI governance, and engineering leadership."
+>
+  <PageHero
+    eyebrow="AI Initiatives"
+    title="Strategic systems for enterprise AI adoption."
+    description="Replacing the traditional portfolio with initiatives that describe platform strategy, agent system design, governed workflows, and organizational enablement."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="card-grid">
+        {
+          initiatives.map((initiative) => (
+            <InitiativeCard initiative={initiative} />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-kicker">Operating Model</p>
+        <h2>
+          Foundation models become useful through the systems around them.
+        </h2>
+      </div>
+      <div class="system-map">
+        <div class="map-node">
+          <strong>Models</strong>
+          <p>
+            General reasoning, generation, summarization, and tool-use
+            capability.
+          </p>
+        </div>
+        <div class="map-node">
+          <strong>Context</strong>
+          <p>
+            Business data, SOPs, permissions, user intent, and workflow state.
+          </p>
+        </div>
+        <div class="map-node">
+          <strong>Controls</strong>
+          <p>Governance, approvals, observability, policy, and audit trails.</p>
+        </div>
+        <div class="map-node">
+          <strong>Adoption</strong>
+          <p>
+            Enablement, patterns, documentation, success metrics, and team
+            habits.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

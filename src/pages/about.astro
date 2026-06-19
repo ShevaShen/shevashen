@@ -1,0 +1,118 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { evolution } from "../data/site.js";
+---
+
+<BaseLayout
+  title="About — Sheva Shen"
+  description="About Sheva Shen, an AI platform leader with a background in design, frontend engineering, platform strategy, and engineering leadership."
+>
+  <PageHero
+    eyebrow="About"
+    title="From design systems to enterprise AI platforms."
+    description="My work has moved steadily from craft and interface execution toward the systems, teams, and operating models that help organizations adopt new technology responsibly."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-kicker">Narrative</p>
+        <p class="lede">
+          I started close to the user experience: digital design, frontend
+          engineering, and the translation layer between product intent and
+          working software. That foundation still matters. AI adoption fails
+          when systems are powerful but unclear, disconnected, or hard for teams
+          to trust.
+        </p>
+      </div>
+      <div class="system-map">
+        <div class="map-node">
+          <strong>Design Background</strong>
+          <p>
+            Visual structure, interaction clarity, and a durable concern for how
+            people actually use software.
+          </p>
+        </div>
+        <div class="map-node">
+          <strong>Frontend Engineering</strong>
+          <p>
+            Production systems, product surfaces, and the discipline of turning
+            ambiguous ideas into usable workflows.
+          </p>
+        </div>
+        <div class="map-node">
+          <strong>Platform Leadership</strong>
+          <p>
+            Shared architecture, developer enablement, internal capabilities,
+            and standards that scale across teams.
+          </p>
+        </div>
+        <div class="map-node">
+          <strong>Enterprise AI</strong>
+          <p>
+            Agent systems, governance, retrieval, context, approvals, and
+            adoption programs that connect AI to business outcomes.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-kicker">Progression</p>
+        <h2>Technical depth, organizational leverage.</h2>
+      </div>
+      <div class="timeline">
+        {
+          evolution.map((step, index) => (
+            <div class="timeline-step">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{step}</strong>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-kicker">Leadership Philosophy</p>
+        <p class="lede">
+          The best platform work reduces friction without hiding responsibility.
+          It gives teams stronger defaults, clearer feedback loops, better
+          context, and a shared way to reason about risk. For AI, that means
+          pairing technical capability with governance, observability,
+          enablement, and human judgment.
+        </p>
+      </div>
+      <div class="card-grid">
+        <article class="archive-item">
+          <h3>Developer Enablement</h3>
+          <p>
+            Teams adopt AI faster when platform primitives, documentation,
+            examples, and support are designed together.
+          </p>
+        </article>
+        <article class="archive-item">
+          <h3>Governed Autonomy</h3>
+          <p>
+            Agent systems need permissions, auditability, approval paths, and
+            constraints that match the workflow.
+          </p>
+        </article>
+        <article class="archive-item">
+          <h3>Human-AI Collaboration</h3>
+          <p>
+            The goal is not automation theater. It is better decisions, better
+            throughput, and systems people can inspect.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
