@@ -1,16 +1,10 @@
 {
   "extends": [
-    "config:base"
+    "config:recommended"
   ],
   "rangeStrategy": "replace",
   "lockFileMaintenance": {
     "enabled": true,
     "extends": "schedule:weekly"
-  },
-  "packageRules": [
-    {
-      "packageNames": ["netlify-cms"],
-      "rangeStrategy": "bump"
-    }
-  ]
+  }
 }
