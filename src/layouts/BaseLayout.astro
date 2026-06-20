@@ -1,5 +1,13 @@
 ---
 import "../styles/global.css";
+import "@fontsource/inter/latin-400.css";
+import "@fontsource/inter/latin-600.css";
+import "@fontsource/lora/400.css";
+import "@fontsource/lora/600.css";
+import inter400 from "@fontsource/inter/files/inter-latin-400-normal.woff2";
+import inter600 from "@fontsource/inter/files/inter-latin-600-normal.woff2";
+import lora400 from "@fontsource/lora/files/lora-latin-400-normal.woff2";
+import lora600 from "@fontsource/lora/files/lora-latin-600-normal.woff2";
 import { navItems, site } from "../data/site.js";
 
 const {
@@ -21,6 +29,34 @@ const canonicalUrl =
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalUrl} />
+    <link
+      rel="preload"
+      href={inter400}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={inter600}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={lora400}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={lora600}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
@@ -34,24 +70,25 @@ const canonicalUrl =
         <nav class="container nav" aria-label="Primary">
           <a class="brand" href="/">
             <strong>{site.name}</strong>
-            <span>AI Platform Leader</span>
+            <span>Software Engineering to AI</span>
           </a>
           <div class="nav-links">
             {
-              navItems.map((item) => {
+              navItems.map((item, index) => {
                 const isCurrent =
                   item.href === "/"
                     ? currentPath === "/"
                     : currentPath.startsWith(item.href);
 
-                return (
+                return [
+                  index > 0 && <span class="nav-separator">/</span>,
                   <a
                     href={item.href}
                     aria-current={isCurrent ? "page" : undefined}
                   >
-                    {item.label}
-                  </a>
-                );
+                    {item.label.toLowerCase()}
+                  </a>,
+                ];
               })
             }
           </div>
@@ -64,7 +101,7 @@ const canonicalUrl =
         <div class="container">
           <span>© {new Date().getFullYear()} Sheva Shen</span>
           <span
-            >Enterprise AI platforms, agent systems, and engineering leadership.</span
+            >Learning notes on AI, agent systems, and engineering leadership.</span
           >
         </div>
       </footer>

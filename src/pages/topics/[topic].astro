@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import { topics } from "../../data/topics.js";
+
+export function getStaticPaths() {
+  return topics.map((topic) => ({
+    params: { topic: topic.slug },
+    props: { topic },
+  }));
+}
+
+const { topic } = Astro.props;
+---
+
+<BaseLayout
+  title={`${topic.title} — Sheva Shen`}
+  description={topic.description}
+>
+  <PageHero
+    eyebrow="Topic"
+    title={topic.title}
+    description={topic.description}
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-kicker">Related Notes</p>
+        <h2>Placeholder notes to be expanded over time.</h2>
+      </div>
+      <div class="card-grid">
+        {
+          topic.notes.map((note) => (
+            <a
+              class="article-card"
+              href={`/topics/${topic.slug}/${note.slug}/`}
+            >
+              <p class="article-meta">
+                {note.date} · {note.readingTime}
+              </p>
+              <h3>{note.title}</h3>
+              <p>{note.summary}</p>
+              <ul class="tag-list">
+                {note.tags.map((tag) => (
+                  <li>{tag}</li>
+                ))}
+              </ul>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

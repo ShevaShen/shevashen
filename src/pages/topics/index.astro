@@ -1,0 +1,37 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import PageHero from "../../components/PageHero.astro";
+import { topics } from "../../data/topics.js";
+---
+
+<BaseLayout
+  title="Topics — Sheva Shen"
+  description="Topic index for Sheva Shen's personal knowledge hub covering AI foundations, agent systems, enterprise AI, and engineering leadership."
+>
+  <PageHero
+    eyebrow="Topics"
+    title="A knowledge base organized around what I am learning."
+    description="Topics are the primary organizing unit for this site. Notes will live under these areas as the learning process develops."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="card-grid">
+        {
+          topics.map((topic) => (
+            <a class="article-card" href={`/topics/${topic.slug}/`}>
+              <p class="article-meta">{topic.notes.length} placeholder notes</p>
+              <h3>{topic.title}</h3>
+              <p>{topic.description}</p>
+              <ul class="tag-list">
+                {topic.notes.slice(0, 4).map((note) => (
+                  <li>{note.title}</li>
+                ))}
+              </ul>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

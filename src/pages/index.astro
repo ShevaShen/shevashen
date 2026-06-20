@@ -1,43 +1,21 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import InitiativeCard from "../components/InitiativeCard.astro";
-import { evolution, focusAreas, initiatives, site } from "../data/site.js";
-
-const posts = Object.values(
-  import.meta.glob("./writing/*.md", { eager: true }),
-);
-const latestPosts = posts
-  .filter((post) => !post.frontmatter.draft)
-  .sort(
-    (a, b) =>
-      new Date(b.frontmatter.pubDate).getTime() -
-      new Date(a.frontmatter.pubDate).getTime(),
-  )
-  .slice(0, 3);
+import { currentFocus, site } from "../data/site.js";
+import { latestNotes, topics } from "../data/topics.js";
 ---
 
 <BaseLayout title={site.title} description={site.description}>
   <section class="hero">
     <div class="hero-inner">
-      <p class="eyebrow">AI Platform Leader</p>
-      <h1>Sheva Shen</h1>
+      <p class="eyebrow">Personal Knowledge Hub</p>
+      <h1>Documenting the transition into AI.</h1>
       <p class="subhead">
-        Building the systems that turn foundation models into business outcomes.
-      </p>
-      <p class="description">
-        I design and lead enterprise AI platforms, agent ecosystems,
-        context-aware workflows, and developer enablement programs that help
-        organizations adopt AI safely and effectively.
+        I'm Sheva, a Staff Engineer exploring AI platforms, agent systems,
+        engineering leadership, and how organizations adopt AI.
       </p>
       <div class="cta-row">
-        <a class="button primary" href="/ai-initiatives/">View AI Initiatives</a
-        >
-        <a class="button secondary" href="/writing/">Read Writing</a>
-      </div>
-      <div class="career-line" aria-label="Career evolution">
-        <span>Frontend Engineer</span>
-        <span>→ Staff Engineer</span>
-        <span>→ AI Platform Leader</span>
+        <a class="button primary" href="/topics/">Explore Topics</a>
+        <a class="button secondary" href="/about/">About Me</a>
       </div>
     </div>
   </section>
@@ -47,13 +25,12 @@ const latestPosts = posts
       <div class="section-header">
         <p class="section-kicker">Current Focus</p>
         <p class="lede">
-          Practical AI platform work: the infrastructure, operating models, and
-          leadership patterns required to move from experiments to trusted
-          organizational capability.
+          These are the themes I am actively researching, experimenting with,
+          and organizing notes around while moving deeper into AI systems work.
         </p>
       </div>
       <div class="focus-grid">
-        {focusAreas.map((area) => <div class="focus-item">{area}</div>)}
+        {currentFocus.map((area) => <div class="focus-item">{area}</div>)}
       </div>
     </div>
   </section>
@@ -61,35 +38,31 @@ const latestPosts = posts
   <section class="section">
     <div class="container">
       <div class="section-header">
-        <p class="section-kicker">Featured AI Initiatives</p>
-        <h2>Systems around AI, not just AI features.</h2>
-      </div>
-      <div class="card-grid">
-        {
-          initiatives.map((initiative) => (
-            <InitiativeCard initiative={initiative} />
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-kicker">Career Evolution</p>
+        <p class="section-kicker">Why This Site Exists</p>
         <p class="lede">
-          A path from visual systems and frontend execution into platform
-          strategy, staff-level leadership, and enterprise AI adoption.
+          Most of the content on this site originates from research sessions,
+          implementation work, architecture reviews, experiments, and notes
+          taken while learning about AI systems. Rather than presenting final
+          answers, this site documents an ongoing learning process.
         </p>
       </div>
-      <div class="timeline">
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-kicker">Explore Topics</p>
+        <h2>Notes organized by the questions I am working through.</h2>
+      </div>
+      <div class="card-grid">
         {
-          evolution.map((step, index) => (
-            <div class="timeline-step">
-              <span>{String(index + 1).padStart(2, "0")}</span>
-              <strong>{step}</strong>
-            </div>
+          topics.map((topic) => (
+            <a class="article-card" href={`/topics/${topic.slug}/`}>
+              <p class="article-meta">{topic.notes.length} placeholder notes</p>
+              <h3>{topic.title}</h3>
+              <p>{topic.description}</p>
+            </a>
           ))
         }
       </div>
@@ -99,40 +72,22 @@ const latestPosts = posts
   <section class="section">
     <div class="container">
       <div class="section-header">
-        <p class="section-kicker">Writing</p>
-        <h2>Notes on enterprise AI, agent engineering, and leadership.</h2>
+        <p class="section-kicker">Recent Notes</p>
+        <h2>Placeholder notes for the first version of the knowledge base.</h2>
       </div>
       <div class="card-grid">
         {
-          latestPosts.map((post) => (
-            <article class="article-card">
+          latestNotes.map((note) => (
+            <a class="article-card" href={note.href}>
               <p class="article-meta">
-                {new Date(post.frontmatter.pubDate).getFullYear()}
+                {note.topic} · {note.readingTime}
               </p>
-              <h3>
-                <a href={post.url}>{post.frontmatter.title}</a>
-              </h3>
-              <p>{post.frontmatter.description}</p>
-            </article>
+              <h3>{note.title}</h3>
+              <p>{note.summary}</p>
+            </a>
           ))
         }
       </div>
-      <div class="link-row">
-        <a class="button" href="/writing/">All Writing</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section compact">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-kicker">Contact</p>
-        <p class="lede">
-          Available for conversations around AI platform strategy, enterprise
-          adoption, engineering leadership, advisory work, and speaking.
-        </p>
-      </div>
-      <a class="button" href="/contact/">Get in touch</a>
     </div>
   </section>
 </BaseLayout>
