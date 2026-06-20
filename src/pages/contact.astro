@@ -1,0 +1,35 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { site } from "../data/site.js";
+---
+
+<BaseLayout
+  title="Contact — Sheva Shen"
+  description="Contact Sheva Shen for conversations about agent systems, enterprise AI adoption, harness engineering, AI platforms, and engineering leadership."
+>
+  <PageHero
+    eyebrow="Contact"
+    title="Open to useful conversations around AI and engineering."
+    description="Reach out for conversations around agent systems, enterprise AI adoption, harness engineering, AI platforms, reliable business systems, and engineering leadership."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-list">
+        <a href={`mailto:${site.email}`}>
+          <strong>Email</strong>
+          <span>{site.email}</span>
+        </a>
+        <a href={site.linkedin}>
+          <strong>LinkedIn</strong>
+          <span>Connect professionally</span>
+        </a>
+        <a href={site.github}>
+          <strong>GitHub</strong>
+          <span>Review technical work</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

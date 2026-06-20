@@ -1,0 +1,99 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { currentFocus, site } from "../data/site.js";
+import { latestNotes, topics } from "../data/topics.js";
+---
+
+<BaseLayout title={site.title} description={site.description}>
+  <section class="hero">
+    <div class="hero-inner">
+      <h1>Software Engineering → AI Systems</h1>
+      <p class="hero-label">Personal Knowledge Hub</p>
+      <p class="subhead">Documenting what I learn while building AI systems.</p>
+      <p class="subhead">
+        I'm a Staff Engineer exploring agent systems, enterprise AI adoption,
+        harness engineering, and the challenges of turning foundation models
+        into reliable business systems.
+      </p>
+      <div class="cta-row">
+        <a class="button primary" href="/topics/">Explore Topics</a>
+        <a class="button secondary" href="/about/">About Me</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-kicker">Current Focus</p>
+        <p class="lede">
+          These are the themes I am actively researching, experimenting with,
+          and organizing notes around while building practical AI systems.
+        </p>
+      </div>
+      <div class="focus-grid">
+        {currentFocus.map((area) => <div class="focus-item">{area}</div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-kicker">Why This Site Exists</p>
+        <p class="lede">
+          Most of the content on this site originates from research sessions,
+          implementation work, architecture reviews, experiments, and notes
+          taken while building AI systems. Rather than presenting final answers,
+          this site documents the learning process behind the work.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-kicker">Explore Topics</p>
+        <h2>
+          Notes organized around the AI systems questions I am working through.
+        </h2>
+      </div>
+      <div class="card-grid">
+        {
+          topics.map((topic) => (
+            <a class="article-card" href={`/topics/${topic.slug}/`}>
+              <p class="article-meta">{topic.notes.length} notes</p>
+              <h3>{topic.title}</h3>
+              <p>{topic.description}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-kicker">Recent Notes</p>
+        <h2>
+          Recent articles from active AI research and implementation work.
+        </h2>
+      </div>
+      <div class="card-grid">
+        {
+          latestNotes.map((note) => (
+            <a class="article-card" href={note.href}>
+              <p class="article-meta">
+                {note.topic} · {note.readingTime}
+              </p>
+              <h3>{note.title}</h3>
+              <p>{note.summary}</p>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

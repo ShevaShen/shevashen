@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { topics } from "../../../data/topics.js";
+
+const noteModules = import.meta.glob("../../../content/notes/*.md", {
+  eager: true,
+});
+
+const noteContentBySlug = Object.fromEntries(
+  Object.entries(noteModules).map(([path, module]) => [
+    path.split("/").pop().replace(".md", ""),
+    module.default,
+  ]),
+);
+
+export function getStaticPaths() {
+  return topics.flatMap((topic) =>
+    topic.notes.map((note) => ({
+      params: { topic: topic.slug, note: note.slug },
+      props: { topic, note },
+    })),
+  );
+}
+
+const { topic, note } = Astro.props;
+const Content = noteContentBySlug[note.slug];
+---
+
+<BaseLayout title={`${note.title} — Sheva Shen`} description={note.summary}>
+  <article class="prose">
+    <p class="article-meta">
+      <a href={`/topics/${topic.slug}/`}>{topic.title}</a> · {note.date} · {
+        note.readingTime
+      }
+    </p>
+    <h1>{note.title}</h1>
+    <p>{note.summary}</p>
+    <ul class="tag-list">
+      {note.tags.map((tag) => <li>{tag}</li>)}
+    </ul>
+    <Content />
+  </article>
+</BaseLayout>

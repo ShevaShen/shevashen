@@ -1,0 +1,109 @@
+---
+import "../styles/global.css";
+import "@fontsource/inter/latin-400.css";
+import "@fontsource/inter/latin-600.css";
+import "@fontsource/lora/400.css";
+import "@fontsource/lora/600.css";
+import inter400 from "@fontsource/inter/files/inter-latin-400-normal.woff2";
+import inter600 from "@fontsource/inter/files/inter-latin-600-normal.woff2";
+import lora400 from "@fontsource/lora/files/lora-latin-400-normal.woff2";
+import lora600 from "@fontsource/lora/files/lora-latin-600-normal.woff2";
+import { navItems, site } from "../data/site.js";
+
+const {
+  title = site.title,
+  description = site.description,
+  canonical,
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const canonicalUrl =
+  canonical || new URL(currentPath, "https://shevashen.com").toString();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link
+      rel="preload"
+      href={inter400}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={inter600}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={lora400}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href={lora600}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content="/img/ai-platform-hero.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <nav class="container nav" aria-label="Primary">
+          <a class="brand" href="/">
+            {site.name}
+          </a>
+          <div class="nav-links">
+            {
+              navItems.map((item, index) => {
+                const isCurrent =
+                  item.href === "/"
+                    ? currentPath === "/"
+                    : currentPath.startsWith(item.href);
+
+                return [
+                  index > 0 && <span class="nav-separator">/</span>,
+                  <a
+                    href={item.href}
+                    aria-current={isCurrent ? "page" : undefined}
+                  >
+                    {item.label.toLowerCase()}
+                  </a>,
+                ];
+              })
+            }
+          </div>
+        </nav>
+      </header>
+      <main>
+        <slot />
+      </main>
+      <footer class="site-footer">
+        <div class="container">
+          <span>© {new Date().getFullYear()} Sheva Shen</span>
+          <span
+            >Notes on agent systems, enterprise AI, and harness engineering.</span
+          >
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

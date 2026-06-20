@@ -1,0 +1,111 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PageHero from "../components/PageHero.astro";
+import { evolution } from "../data/site.js";
+---
+
+<BaseLayout
+  title="About — Sheva Shen"
+  description="About Sheva Shen's path from software engineering into AI systems, platform work, enterprise adoption, and engineering leadership."
+>
+  <PageHero
+    eyebrow="About"
+    title="A software engineer building and studying AI systems."
+    description="This site is a place to organize what I am learning from agent systems, enterprise AI adoption, harness engineering, and the work of making foundation models reliable in real organizations."
+  />
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-kicker">Background</p>
+        <p class="lede">
+          My path started with digital design and frontend engineering, close to
+          the user experience and the details of how products actually feel.
+          Over time, the work expanded into platform engineering, technical
+          leadership, and systems that help other teams build with better
+          defaults.
+        </p>
+      </div>
+      <div class="system-map">
+        <div class="map-node">
+          <strong>Digital Design</strong>
+          <p>
+            Visual systems, interface clarity, and attention to how people use
+            software.
+          </p>
+        </div>
+        <div class="map-node">
+          <strong>Frontend Engineering</strong>
+          <p>
+            Product surfaces, production workflows, and translating ambiguity
+            into usable software.
+          </p>
+        </div>
+        <div class="map-node">
+          <strong>Platform Engineering</strong>
+          <p>
+            Shared capabilities, developer enablement, standards, and leverage
+            across teams.
+          </p>
+        </div>
+        <div class="map-node">
+          <strong>Engineering Leadership</strong>
+          <p>
+            Staff-level influence, platform strategy, cross-functional
+            execution, and organizational change.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-kicker">Career Evolution</p>
+        <h2>
+          Each chapter changed what kind of leverage I was learning to build.
+        </h2>
+      </div>
+      <div class="timeline">
+        {
+          evolution.map((step, index) => (
+            <div class="timeline-step">
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <strong>{step}</strong>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-kicker">Today</p>
+        <p class="lede">
+          Today I am focused on enterprise AI, agent systems, AI adoption, and
+          harness engineering. I am especially interested in the systems around
+          models: context, tools, permissions, observability, approval flows,
+          and the engineering leadership required to make AI useful in real
+          organizations.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-kicker">Why I Write</p>
+        <p class="lede">
+          Writing is how I clarify what I am learning while building. The notes
+          here are not meant to present final expertise. They are a record of
+          research, implementation, architecture review, experimentation, and
+          practical judgment as the work evolves.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
