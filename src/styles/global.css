@@ -172,13 +172,6 @@ main {
   line-height: 1.03;
 }
 
-.hero-label {
-  margin: -8px 0 0;
-  color: var(--muted);
-  font-size: 14px;
-  font-weight: 650;
-}
-
 .hero .subhead,
 .page-hero p,
 .lede {
@@ -187,6 +180,13 @@ main {
   font-family: var(--font-serif);
   font-size: 19px;
   line-height: 1.75;
+}
+
+.context-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
 }
 
 .cta-row,
