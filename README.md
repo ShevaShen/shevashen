@@ -1,6 +1,6 @@
 # shevashen.com
 
-Personal website for Sheva Shen, repositioned around AI platform leadership, enterprise AI adoption, agent systems, governance, and developer enablement.
+Personal website for Sheva Shen, positioned as a knowledge hub documenting what he learns while building AI systems across agent systems, enterprise AI adoption, harness engineering, and reliable business systems.
 
 ## Stack
 

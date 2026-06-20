@@ -2,6 +2,17 @@
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import { topics } from "../../../data/topics.js";
 
+const noteModules = import.meta.glob("../../../content/notes/*.md", {
+  eager: true,
+});
+
+const noteContentBySlug = Object.fromEntries(
+  Object.entries(noteModules).map(([path, module]) => [
+    path.split("/").pop().replace(".md", ""),
+    module.default,
+  ]),
+);
+
 export function getStaticPaths() {
   return topics.flatMap((topic) =>
     topic.notes.map((note) => ({
@@ -12,6 +23,7 @@ export function getStaticPaths() {
 }
 
 const { topic, note } = Astro.props;
+const Content = noteContentBySlug[note.slug];
 ---
 
 <BaseLayout title={`${note.title} — Sheva Shen`} description={note.summary}>
@@ -26,7 +38,6 @@ const { topic, note } = Astro.props;
     <ul class="tag-list">
       {note.tags.map((tag) => <li>{tag}</li>)}
     </ul>
-    <h2>Placeholder</h2>
-    <p>This note is a placeholder. Full content will be added later.</p>
+    <Content />
   </article>
 </BaseLayout>

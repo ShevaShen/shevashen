@@ -7,11 +7,13 @@ import { latestNotes, topics } from "../data/topics.js";
 <BaseLayout title={site.title} description={site.description}>
   <section class="hero">
     <div class="hero-inner">
-      <p class="eyebrow">Personal Knowledge Hub</p>
-      <h1>Documenting the transition into AI.</h1>
+      <h1>Software Engineering → AI Systems</h1>
+      <p class="hero-label">Personal Knowledge Hub</p>
+      <p class="subhead">Documenting what I learn while building AI systems.</p>
       <p class="subhead">
-        I'm Sheva, a Staff Engineer exploring AI platforms, agent systems,
-        engineering leadership, and how organizations adopt AI.
+        I'm a Staff Engineer exploring agent systems, enterprise AI adoption,
+        harness engineering, and the challenges of turning foundation models
+        into reliable business systems.
       </p>
       <div class="cta-row">
         <a class="button primary" href="/topics/">Explore Topics</a>
@@ -26,7 +28,7 @@ import { latestNotes, topics } from "../data/topics.js";
         <p class="section-kicker">Current Focus</p>
         <p class="lede">
           These are the themes I am actively researching, experimenting with,
-          and organizing notes around while moving deeper into AI systems work.
+          and organizing notes around while building practical AI systems.
         </p>
       </div>
       <div class="focus-grid">
@@ -42,8 +44,8 @@ import { latestNotes, topics } from "../data/topics.js";
         <p class="lede">
           Most of the content on this site originates from research sessions,
           implementation work, architecture reviews, experiments, and notes
-          taken while learning about AI systems. Rather than presenting final
-          answers, this site documents an ongoing learning process.
+          taken while building AI systems. Rather than presenting final answers,
+          this site documents the learning process behind the work.
         </p>
       </div>
     </div>
@@ -53,13 +55,15 @@ import { latestNotes, topics } from "../data/topics.js";
     <div class="container">
       <div class="section-header">
         <p class="section-kicker">Explore Topics</p>
-        <h2>Notes organized by the questions I am working through.</h2>
+        <h2>
+          Notes organized around the AI systems questions I am working through.
+        </h2>
       </div>
       <div class="card-grid">
         {
           topics.map((topic) => (
             <a class="article-card" href={`/topics/${topic.slug}/`}>
-              <p class="article-meta">{topic.notes.length} placeholder notes</p>
+              <p class="article-meta">{topic.notes.length} notes</p>
               <h3>{topic.title}</h3>
               <p>{topic.description}</p>
             </a>
@@ -73,7 +77,9 @@ import { latestNotes, topics } from "../data/topics.js";
     <div class="container">
       <div class="section-header">
         <p class="section-kicker">Recent Notes</p>
-        <h2>Placeholder notes for the first version of the knowledge base.</h2>
+        <h2>
+          Recent articles from active AI research and implementation work.
+        </h2>
       </div>
       <div class="card-grid">
         {

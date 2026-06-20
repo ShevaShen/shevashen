@@ -6,12 +6,12 @@ import { topics } from "../../data/topics.js";
 
 <BaseLayout
   title="Topics — Sheva Shen"
-  description="Topic index for Sheva Shen's personal knowledge hub covering AI foundations, agent systems, enterprise AI, and engineering leadership."
+  description="Topic index for Sheva Shen's personal knowledge hub covering agent systems, enterprise AI adoption, harness engineering, and engineering leadership."
 >
   <PageHero
     eyebrow="Topics"
-    title="A knowledge base organized around what I am learning."
-    description="Topics are the primary organizing unit for this site. Notes will live under these areas as the learning process develops."
+    title="A knowledge base for AI systems notes."
+    description="Topics organize what I am learning from agent systems, enterprise AI adoption, harness engineering, OpenClaw experiments, and AI leadership questions."
   />
 
   <section class="section">
@@ -20,7 +20,7 @@ import { topics } from "../../data/topics.js";
         {
           topics.map((topic) => (
             <a class="article-card" href={`/topics/${topic.slug}/`}>
-              <p class="article-meta">{topic.notes.length} placeholder notes</p>
+              <p class="article-meta">{topic.notes.length} notes</p>
               <h3>{topic.title}</h3>
               <p>{topic.description}</p>
               <ul class="tag-list">

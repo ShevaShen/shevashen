@@ -1,97 +1,36 @@
 export const topics = [
   {
-    title: "AI Foundations",
-    slug: "ai-foundations",
-    description:
-      "Core concepts behind modern AI systems, including LLMs, prompting, context windows, RAG, embeddings, and evaluation.",
-    notes: [
-      {
-        title: "What Is RAG?",
-        slug: "what-is-rag",
-        summary:
-          "A placeholder note for explaining retrieval-augmented generation and where it fits in practical AI systems.",
-        tags: ["RAG", "Retrieval", "AI Foundations"],
-        date: "2026-02-01",
-        readingTime: "2 min read",
-      },
-      {
-        title: "Why Context Is Harder Than Models",
-        slug: "why-context-is-harder-than-models",
-        summary:
-          "A placeholder note on why useful AI systems depend on context design, not just model selection.",
-        tags: ["Context", "System Design", "AI Foundations"],
-        date: "2026-02-02",
-        readingTime: "2 min read",
-      },
-      {
-        title: "Prompt Engineering Patterns",
-        slug: "prompt-engineering-patterns",
-        summary:
-          "A placeholder note for collecting practical prompting patterns, constraints, and reusable structures.",
-        tags: ["Prompting", "Patterns", "AI Foundations"],
-        date: "2026-02-03",
-        readingTime: "2 min read",
-      },
-      {
-        title: "Understanding Context Windows",
-        slug: "understanding-context-windows",
-        summary:
-          "A placeholder note on context windows, attention limits, and how token budgets shape AI workflows.",
-        tags: ["Context Windows", "LLMs", "AI Foundations"],
-        date: "2026-02-04",
-        readingTime: "2 min read",
-      },
-    ],
-  },
-  {
     title: "Agent Systems",
     slug: "agent-systems",
     description:
-      "Notes on agent frameworks, tool calling, workflow orchestration, memory systems, and multi-agent coordination.",
+      "Notes on agent loops, memory, tool use, orchestration, session behavior, and OpenClaw architecture.",
     notes: [
       {
-        title: "What Is MCP?",
-        slug: "what-is-mcp",
+        title: "OpenClaw Concurrency Is Not Isolation",
+        slug: "openclaw-concurrency-is-not-isolation",
         summary:
-          "A placeholder note on Model Context Protocol and why standardized tool/context access matters.",
-        tags: ["MCP", "Agent Systems", "Tooling"],
-        date: "2026-02-05",
-        readingTime: "2 min read",
+          "My investigation into why concurrent OpenClaw sessions can still compete for shared runtime resources.",
+        tags: ["Agent Systems", "OpenClaw", "Concurrency", "Enterprise AI"],
+        date: "2026-06-20",
+        readingTime: "3 min read",
       },
       {
-        title: "What Is A2A?",
-        slug: "what-is-a2a",
+        title:
+          "Agent Loops vs Agent Teams: Understanding Where Intelligence Actually Lives",
+        slug: "agent-loops-vs-agent-teams-understanding-where-intelligence-actually-lives",
         summary:
-          "A placeholder note on agent-to-agent coordination and emerging patterns for multi-agent systems.",
-        tags: ["A2A", "Coordination", "Agent Systems"],
-        date: "2026-02-06",
-        readingTime: "2 min read",
+          "A practical distinction between agent loops, agent teams, execution style, topology, and where orchestration should own control flow.",
+        tags: ["Agent Systems", "Architecture", "Orchestration", "OpenClaw"],
+        date: "2026-05-08",
+        readingTime: "3 min read",
       },
       {
-        title: "How Tool Calling Works",
-        slug: "how-tool-calling-works",
+        title: "Investigating Honcho Memory Architecture for OpenClaw",
+        slug: "investigating-honcho-memory-architecture-for-openclaw",
         summary:
-          "A placeholder note for explaining how models call tools, handle results, and participate in workflows.",
-        tags: ["Tool Calling", "Workflows", "Agent Systems"],
-        date: "2026-02-07",
-        readingTime: "2 min read",
-      },
-      {
-        title: "OpenClaw Session Architecture",
-        slug: "openclaw-session-architecture",
-        summary:
-          "A placeholder note on session design, context flow, tools, and orchestration in OpenClaw-style systems.",
-        tags: ["OpenClaw", "Architecture", "Agent Systems"],
-        date: "2026-02-08",
-        readingTime: "2 min read",
-      },
-      {
-        title: "Agent Memory Systems",
-        slug: "agent-memory-systems",
-        summary:
-          "A placeholder note on memory, state, retrieval, and continuity in agentic workflows.",
-        tags: ["Memory", "State", "Agent Systems"],
-        date: "2026-02-09",
+          "Notes on Honcho representations, observe_me, memory quality, and how long-term memory should be applied in OpenClaw.",
+        tags: ["Agent Memory", "Honcho", "OpenClaw", "Representations"],
+        date: "2026-04-30",
         readingTime: "2 min read",
       },
     ],
@@ -100,61 +39,36 @@ export const topics = [
     title: "Enterprise AI",
     slug: "enterprise-ai",
     description:
-      "Practical notes on adopting AI inside organizations, including governance, observability, security, approval flows, and knowledge systems.",
+      "Practical notes on AI platform architecture, governance, knowledge retrieval, runtime capabilities, and enterprise adoption constraints.",
     notes: [
       {
-        title: "Why Enterprise AI Pilots Fail",
-        slug: "why-enterprise-ai-pilots-fail",
+        title:
+          "Skill-Defined Tools vs Runtime-Provided Tools in Enterprise Agent Platforms",
+        slug: "skill-defined-tools-vs-runtime-provided-tools-in-enterprise-agent-platforms",
         summary:
-          "A placeholder note on why pilots often fail when organizations test models without designing the surrounding system.",
-        tags: ["Adoption", "Enterprise AI", "Strategy"],
-        date: "2026-02-10",
-        readingTime: "2 min read",
+          "A platform architecture note on why skills can describe tool usage, but runtimes must own executable capabilities.",
+        tags: ["Enterprise AI", "AI Platforms", "Tools", "OpenClaw"],
+        date: "2026-06-20",
+        readingTime: "3 min read",
       },
       {
-        title: "Permission-Aware AI Systems",
-        slug: "permission-aware-ai-systems",
+        title:
+          "Building SOP Retrieval for OpenClaw Skills Instead of Prompt-Stuffing",
+        slug: "building-sop-retrieval-for-openclaw-skills-instead-of-prompt-stuffing",
         summary:
-          "A placeholder note on context filtering, action boundaries, approvals, and auditability.",
-        tags: ["Permissions", "Governance", "Enterprise AI"],
-        date: "2026-02-11",
-        readingTime: "2 min read",
+          "A design note on separating OpenClaw skill workflow from SOP retrieval, search quality, and business policy ownership.",
+        tags: ["Enterprise AI", "OpenClaw", "Knowledge Retrieval", "SOPs"],
+        date: "2026-06-16",
+        readingTime: "4 min read",
       },
       {
-        title: "Human Approval Patterns",
-        slug: "human-approval-patterns",
+        title: "OpenClaw Permissions: Why Prompt Rules Are Not Enforcement",
+        slug: "openclaw-permissions-why-prompt-rules-are-not-enforcement",
         summary:
-          "A placeholder note on designing approval flows for high-impact AI-assisted actions.",
-        tags: ["Approvals", "Governance", "Human-in-the-loop"],
-        date: "2026-02-12",
-        readingTime: "2 min read",
-      },
-      {
-        title: "Agent Observability",
-        slug: "agent-observability",
-        summary:
-          "A placeholder note on logs, traces, evaluations, and operational visibility for agent systems.",
-        tags: ["Observability", "Agents", "Enterprise AI"],
-        date: "2026-02-13",
-        readingTime: "2 min read",
-      },
-      {
-        title: "Knowledge Retrieval Systems",
-        slug: "knowledge-retrieval-systems",
-        summary:
-          "A placeholder note on SOP search, grounded responses, retrieval quality, and organizational knowledge.",
-        tags: ["Retrieval", "Knowledge Systems", "Enterprise AI"],
-        date: "2026-02-14",
-        readingTime: "2 min read",
-      },
-      {
-        title: "Enterprise AI Adoption Lessons",
-        slug: "enterprise-ai-adoption-lessons",
-        summary:
-          "A placeholder note for lessons from enabling AI adoption across teams and workflows.",
-        tags: ["Adoption", "Enablement", "Enterprise AI"],
-        date: "2026-02-15",
-        readingTime: "2 min read",
+          "An investigation into why prompts guide behavior but runtime approval systems are needed for real enforcement.",
+        tags: ["Enterprise AI", "Permissions", "Governance", "OpenClaw"],
+        date: "2026-05-21",
+        readingTime: "4 min read",
       },
     ],
   },
@@ -162,43 +76,21 @@ export const topics = [
     title: "Engineering Leadership",
     slug: "engineering-leadership",
     description:
-      "Reflections on Staff Engineering, platform strategy, developer productivity, technical leadership, and organizational change.",
+      "Reflections on AI adoption, organizational design, harness engineering, technical leadership, and how engineering work changes around AI.",
     notes: [
       {
-        title: "From Frontend Engineer to AI Platform Leader",
-        slug: "from-frontend-engineer-to-ai-platform-leader",
+        title: "Becoming AI-Native: Rethinking How Organizations Work",
+        slug: "becoming-ai-native-rethinking-how-organizations-work",
         summary:
-          "A placeholder note on the career transition from interface work into AI platform strategy.",
-        tags: ["Career", "Staff Engineering", "Leadership"],
-        date: "2026-02-16",
-        readingTime: "2 min read",
-      },
-      {
-        title: "AI Adoption Is an Engineering Leadership Problem",
-        slug: "ai-adoption-is-an-engineering-leadership-problem",
-        summary:
-          "A placeholder note on why AI adoption requires leadership, standards, enablement, and operating models.",
-        tags: ["AI Adoption", "Leadership", "Organizations"],
-        date: "2026-02-17",
-        readingTime: "2 min read",
-      },
-      {
-        title: "Platform Thinking in the AI Era",
-        slug: "platform-thinking-in-the-ai-era",
-        summary:
-          "A placeholder note on applying platform strategy to AI capabilities, tools, and team workflows.",
-        tags: ["Platform Strategy", "AI", "Leadership"],
-        date: "2026-02-18",
-        readingTime: "2 min read",
-      },
-      {
-        title: "Developer Productivity with AI",
-        slug: "developer-productivity-with-ai",
-        summary:
-          "A placeholder note on developer enablement, workflow quality, and practical AI-assisted engineering.",
-        tags: ["Developer Productivity", "AI", "Engineering Leadership"],
-        date: "2026-02-19",
-        readingTime: "2 min read",
+          "A reflection on why AI adoption is less about tool access and more about organizational design, harness engineering, governance, and leadership judgment.",
+        tags: [
+          "AI Leadership",
+          "AI Adoption",
+          "Harness Engineering",
+          "Organizational Design",
+        ],
+        date: "2026-04-19",
+        readingTime: "4 min read",
       },
     ],
   },
