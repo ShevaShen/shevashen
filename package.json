@@ -13,6 +13,7 @@
     "build": "astro build",
     "serve": "astro preview",
     "preview": "astro preview",
+    "render:og": "node tools/render-og-poster.mjs",
     "format": "prettier --plugin=prettier-plugin-astro --write \"src/**/*.{astro,css,js,md}\" \"tools/**/*.mjs\" \"astro.config.mjs\" \"package.json\" \"README.md\""
   },
   "dependencies": {
