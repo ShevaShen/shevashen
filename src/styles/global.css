@@ -59,6 +59,10 @@ textarea {
   letter-spacing: 0;
 }
 
+.text-nowrap {
+  white-space: nowrap;
+}
+
 a {
   color: inherit;
   text-decoration-color: var(--line-strong);

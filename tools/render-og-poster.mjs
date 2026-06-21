@@ -1,294 +1,109 @@
-import { spawnSync } from "node:child_process";
+import sharp from "sharp";
 
-const html = `<!doctype html>
-<html>
-  <head>
+const width = 1200;
+const height = 630;
+
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#faf9f7"/>
+      <stop offset="48%" stop-color="#f2f0ed"/>
+      <stop offset="100%" stop-color="#e7ecec"/>
+    </linearGradient>
+    <radialGradient id="blueGlow" cx="83%" cy="17%" r="34%">
+      <stop offset="0%" stop-color="#375b77" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#375b77" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="amberGlow" cx="84%" cy="84%" r="32%">
+      <stop offset="0%" stop-color="#b87847" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#b87847" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="36" height="36" patternUnits="userSpaceOnUse">
+      <path d="M 36 0 L 0 0 0 36" fill="none" stroke="#171717" stroke-opacity="0.035" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="rule" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#375b77"/>
+      <stop offset="100%" stop-color="#b87847"/>
+    </linearGradient>
+    <linearGradient id="node" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#375b77" stop-opacity="0.12"/>
+    </linearGradient>
     <style>
-      html,
-      body {
-        width: 1200px;
-        height: 630px;
-        margin: 0;
-        overflow: hidden;
-        background: #f5f5f4;
-        font-family:
-          Inter,
-          -apple-system,
-          BlinkMacSystemFont,
-          "Segoe UI",
-          sans-serif;
+      .sans {
+        font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+        letter-spacing: 0;
       }
-
-      .poster {
-        position: relative;
-        width: 1200px;
-        height: 630px;
-        overflow: hidden;
-        background:
-          radial-gradient(circle at 83% 17%, rgba(55, 91, 119, 0.2), transparent 30%),
-          radial-gradient(circle at 83% 84%, rgba(184, 120, 71, 0.16), transparent 28%),
-          linear-gradient(130deg, #faf9f7 0%, #f2f0ed 48%, #e7ecec 100%);
-        color: #171717;
-      }
-
-      .grain {
-        position: absolute;
-        inset: 0;
-        opacity: 0.42;
-        background-image:
-          linear-gradient(rgba(23, 23, 23, 0.035) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(23, 23, 23, 0.03) 1px, transparent 1px);
-        background-size: 36px 36px;
-        mask-image: linear-gradient(90deg, transparent 0%, #000 45%, #000 100%);
-      }
-
-      .system {
-        position: absolute;
-        inset: 0;
-      }
-
-      .panel {
-        position: absolute;
-        border: 1px solid rgba(23, 23, 23, 0.13);
-        background: rgba(255, 255, 255, 0.34);
-        box-shadow: 0 24px 70px rgba(23, 23, 23, 0.06);
-      }
-
-      .p1 {
-        left: 700px;
-        top: 80px;
-        width: 330px;
-        height: 170px;
-      }
-
-      .p2 {
-        left: 825px;
-        top: 315px;
-        width: 260px;
-        height: 205px;
-      }
-
-      .p3 {
-        left: 600px;
-        top: 370px;
-        width: 185px;
-        height: 120px;
-      }
-
-      .node {
-        position: absolute;
-        width: 78px;
-        height: 78px;
-        border-radius: 999px;
-        border: 1px solid rgba(55, 91, 119, 0.46);
-        background: radial-gradient(
-          circle at 34% 28%,
-          rgba(255, 255, 255, 0.8),
-          rgba(55, 91, 119, 0.12) 62%,
-          rgba(55, 91, 119, 0.04)
-        );
-      }
-
-      .n1 {
-        left: 727px;
-        top: 126px;
-      }
-
-      .n2 {
-        left: 902px;
-        top: 130px;
-      }
-
-      .n3 {
-        left: 830px;
-        top: 410px;
-      }
-
-      .n4 {
-        left: 1015px;
-        top: 412px;
-      }
-
-      .gate {
-        position: absolute;
-        width: 120px;
-        height: 60px;
-        border: 1px solid rgba(184, 120, 71, 0.56);
-        background: rgba(184, 120, 71, 0.1);
-        transform: rotate(-7deg);
-      }
-
-      .g1 {
-        left: 615px;
-        top: 455px;
-      }
-
-      .g2 {
-        left: 982px;
-        top: 242px;
-      }
-
-      .line {
-        position: absolute;
-        height: 1px;
-        background: linear-gradient(90deg, transparent, rgba(23, 23, 23, 0.38), transparent);
-        transform-origin: left center;
-      }
-
-      .l1 {
-        left: 805px;
-        top: 165px;
-        width: 110px;
-      }
-
-      .l2 {
-        left: 938px;
-        top: 210px;
-        width: 185px;
-        transform: rotate(47deg);
-      }
-
-      .l3 {
-        left: 740px;
-        top: 410px;
-        width: 130px;
-        transform: rotate(-40deg);
-      }
-
-      .l4 {
-        left: 908px;
-        top: 450px;
-        width: 120px;
-      }
-
-      .arc {
-        position: absolute;
-        border: 1px solid rgba(55, 91, 119, 0.14);
-        border-radius: 50%;
-        transform: rotate(-22deg);
-      }
-
-      .a1 {
-        left: 540px;
-        top: 70px;
-        width: 600px;
-        height: 410px;
-      }
-
-      .a2 {
-        left: 640px;
-        top: 150px;
-        width: 430px;
-        height: 290px;
-      }
-
-      .content {
-        position: absolute;
-        left: 74px;
-        top: 70px;
-        width: 675px;
-      }
-
       .name {
-        margin: 0 0 46px;
-        color: rgba(23, 23, 23, 0.58);
+        fill: rgba(23, 23, 23, 0.58);
         font-size: 28px;
         font-weight: 600;
-        letter-spacing: 0;
       }
-
-      h1 {
-        width: 670px;
-        margin: 0;
-        color: #171717;
-        font-size: 74px;
+      .title {
+        fill: #171717;
+        font-size: 70px;
         font-weight: 650;
-        line-height: 0.98;
-        letter-spacing: 0;
       }
-
       .dek {
-        width: 575px;
-        margin: 34px 0 0;
-        color: rgba(23, 23, 23, 0.66);
+        fill: rgba(23, 23, 23, 0.66);
         font-size: 28px;
-        line-height: 1.34;
-        letter-spacing: 0;
+        font-weight: 500;
       }
-
-      .rule {
-        position: absolute;
-        left: 74px;
-        bottom: 62px;
-        width: 418px;
-        height: 2px;
-        background: linear-gradient(90deg, #375b77, #b87847);
-      }
-
-      .topics {
-        position: absolute;
-        right: 72px;
-        bottom: 55px;
-        display: flex;
-        gap: 10px;
-        color: rgba(23, 23, 23, 0.6);
+      .topic {
+        fill: rgba(23, 23, 23, 0.6);
         font-size: 18px;
         font-weight: 600;
       }
-
-      .topics span:not(:last-child)::after {
-        content: "/";
-        margin-left: 10px;
-        color: rgba(23, 23, 23, 0.28);
+      .slash {
+        fill: rgba(23, 23, 23, 0.28);
+        font-size: 18px;
+        font-weight: 600;
       }
     </style>
-  </head>
-  <body>
-    <main class="poster">
-      <div class="grain"></div>
-      <div class="system">
-        <div class="arc a1"></div>
-        <div class="arc a2"></div>
-        <div class="panel p1"></div>
-        <div class="panel p2"></div>
-        <div class="panel p3"></div>
-        <div class="node n1"></div>
-        <div class="node n2"></div>
-        <div class="node n3"></div>
-        <div class="node n4"></div>
-        <div class="gate g1"></div>
-        <div class="gate g2"></div>
-        <div class="line l1"></div>
-        <div class="line l2"></div>
-        <div class="line l3"></div>
-        <div class="line l4"></div>
-      </div>
-      <section class="content">
-        <p class="name">Sheva Shen</p>
-        <h1>Software Engineering → AI Systems</h1>
-        <p class="dek">Engineering notes on agent systems, enterprise AI adoption, and reliable business systems.</p>
-      </section>
-      <div class="rule"></div>
-      <div class="topics">
-        <span>Agent Systems</span>
-        <span>Enterprise AI</span>
-        <span>Harness Engineering</span>
-      </div>
-    </main>
-  </body>
-</html>`;
+  </defs>
 
-const url = `data:text/html;charset=utf-8,${encodeURIComponent(html)}`;
-const result = spawnSync(
-  "npx",
-  [
-    "playwright",
-    "screenshot",
-    "--viewport-size=1200,630",
-    url,
-    "static/img/shevashen-og-poster.png",
-  ],
-  { stdio: "inherit" },
-);
+  <rect width="${width}" height="${height}" fill="url(#bg)"/>
+  <rect width="${width}" height="${height}" fill="url(#blueGlow)"/>
+  <rect width="${width}" height="${height}" fill="url(#amberGlow)"/>
+  <rect x="420" y="0" width="780" height="630" fill="url(#grid)" opacity="0.42"/>
 
-process.exit(result.status ?? 1);
+  <g opacity="0.95">
+    <ellipse cx="842" cy="270" rx="305" ry="196" fill="none" stroke="#375b77" stroke-opacity="0.14"/>
+    <ellipse cx="860" cy="290" rx="220" ry="142" fill="none" stroke="#375b77" stroke-opacity="0.14"/>
+
+    <rect x="700" y="80" width="330" height="170" fill="#ffffff" fill-opacity="0.34" stroke="#171717" stroke-opacity="0.13"/>
+    <rect x="825" y="315" width="260" height="205" fill="#ffffff" fill-opacity="0.34" stroke="#171717" stroke-opacity="0.13"/>
+    <rect x="600" y="370" width="185" height="120" fill="#ffffff" fill-opacity="0.32" stroke="#171717" stroke-opacity="0.12"/>
+
+    <line x1="805" y1="165" x2="915" y2="165" stroke="#171717" stroke-opacity="0.38"/>
+    <line x1="938" y1="210" x2="1063" y2="350" stroke="#171717" stroke-opacity="0.24"/>
+    <line x1="740" y1="410" x2="870" y2="290" stroke="#171717" stroke-opacity="0.18"/>
+    <line x1="908" y1="450" x2="1028" y2="450" stroke="#171717" stroke-opacity="0.28"/>
+
+    <circle cx="766" cy="165" r="39" fill="url(#node)" stroke="#375b77" stroke-opacity="0.46"/>
+    <circle cx="941" cy="169" r="39" fill="url(#node)" stroke="#375b77" stroke-opacity="0.46"/>
+    <circle cx="869" cy="449" r="39" fill="url(#node)" stroke="#375b77" stroke-opacity="0.46"/>
+    <circle cx="1054" cy="451" r="39" fill="url(#node)" stroke="#375b77" stroke-opacity="0.46"/>
+
+    <rect x="615" y="455" width="120" height="60" fill="#b87847" fill-opacity="0.1" stroke="#b87847" stroke-opacity="0.56" transform="rotate(-7 675 485)"/>
+    <rect x="982" y="242" width="120" height="60" fill="#b87847" fill-opacity="0.1" stroke="#b87847" stroke-opacity="0.56" transform="rotate(-7 1042 272)"/>
+  </g>
+
+  <g class="sans">
+    <text x="74" y="97" class="name">Sheva Shen</text>
+    <text x="74" y="211" class="title">Software</text>
+    <text x="74" y="286" class="title">Engineering → AI Systems</text>
+    <text x="74" y="430" class="dek">Engineering notes on agent systems, enterprise</text>
+    <text x="74" y="467" class="dek">AI adoption, and reliable business systems.</text>
+    <rect x="74" y="566" width="418" height="2" fill="url(#rule)"/>
+    <text x="667" y="572" class="topic">Agent Systems</text>
+    <text x="805" y="572" class="slash">/</text>
+    <text x="820" y="572" class="topic">Enterprise AI</text>
+    <text x="937" y="572" class="slash">/</text>
+    <text x="954" y="572" class="topic">Harness Engineering</text>
+  </g>
+</svg>`;
+
+await sharp(Buffer.from(svg))
+  .png()
+  .toFile("static/img/shevashen-og-poster.png");
