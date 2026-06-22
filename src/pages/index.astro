@@ -36,9 +36,9 @@ import { latestNotes, topics } from "../data/topics.js";
           and organizing notes around while building practical AI systems.
         </p>
       </div>
-      <div class="focus-grid">
-        {currentFocus.map((area) => <div class="focus-item">{area}</div>)}
-      </div>
+      <ul class="focus-list">
+        {currentFocus.map((area) => <li>{area}</li>)}
+      </ul>
     </div>
   </section>
 
@@ -72,6 +72,7 @@ import { latestNotes, topics } from "../data/topics.js";
               <p class="article-meta">{topic.notes.length} notes</p>
               <h3>{topic.title}</h3>
               <p>{topic.description}</p>
+              <span class="card-action">Explore topic →</span>
             </a>
           ))
         }
@@ -96,6 +97,7 @@ import { latestNotes, topics } from "../data/topics.js";
               </p>
               <h3>{note.title}</h3>
               <p>{note.summary}</p>
+              <span class="card-action">Read note →</span>
             </a>
           ))
         }

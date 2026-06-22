@@ -259,10 +259,10 @@ h3 {
   font-weight: 650;
 }
 
-.focus-grid,
 .card-grid,
-.system-map,
 .timeline,
+.focus-list,
+.background-list,
 .contact-list {
   display: flex;
   flex-direction: column;
@@ -271,12 +271,7 @@ h3 {
   background: transparent;
 }
 
-.focus-item,
-.initiative-card,
 .article-card,
-.archive-item,
-.map-node,
-.timeline-step,
 .contact-list a {
   position: relative;
   min-height: 0;
@@ -292,7 +287,6 @@ h3 {
     color 180ms ease;
 }
 
-.article-card::after,
 .contact-list a::after {
   content: "→";
   position: absolute;
@@ -312,24 +306,33 @@ h3 {
   color: var(--ink);
 }
 
-.article-card:hover::after,
 .contact-list a:hover::after {
   color: var(--ink);
   transform: translate(3px, -50%);
 }
 
-.focus-item {
-  padding-right: 16px;
+.focus-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.focus-list li {
+  position: relative;
+  padding-left: 18px;
   color: var(--ink);
   font-weight: 600;
 }
 
-.initiative-card,
-.archive-item,
-.map-node,
-.timeline-step {
-  display: grid;
-  gap: 8px;
+.focus-list li::before {
+  content: "";
+  position: absolute;
+  top: 0.82em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--line-strong);
 }
 
 .article-card {
@@ -338,14 +341,26 @@ h3 {
   text-decoration: none;
 }
 
-.initiative-card p,
-.article-card p,
-.archive-item p,
-.map-node p {
+.article-card p {
   margin: 0;
   color: var(--text);
   font-size: 14px;
   line-height: 1.55;
+}
+
+.card-action {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 650;
+  transition:
+    color 180ms ease,
+    transform 180ms ease;
+}
+
+.article-card:hover .card-action {
+  color: var(--ink);
+  transform: translateX(3px);
 }
 
 .tag-list {
@@ -368,7 +383,12 @@ h3 {
 }
 
 .timeline-step {
-  padding-right: 16px;
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  align-items: baseline;
+  gap: 10px;
+  padding: 0 0 0 14px;
+  border-left: 1px solid var(--line);
 }
 
 .timeline-step span {
@@ -379,6 +399,34 @@ h3 {
 .timeline-step strong {
   color: var(--ink);
   font-size: 16px;
+}
+
+.background-list {
+  gap: 18px;
+}
+
+.background-item {
+  display: grid;
+  gap: 4px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.background-item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.background-item strong {
+  color: var(--ink);
+  font-size: 16px;
+}
+
+.background-item p {
+  margin: 0;
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.65;
 }
 
 .page-hero {
