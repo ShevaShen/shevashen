@@ -30,11 +30,11 @@ const archived = [
 
   <section class="section">
     <div class="container">
-      <div class="card-grid">
+      <div class="background-list">
         {
           archived.map((item) => (
-            <article class="archive-item">
-              <h3>{item.title}</h3>
+            <article class="background-item">
+              <strong>{item.title}</strong>
               <p>{item.text}</p>
             </article>
           ))
