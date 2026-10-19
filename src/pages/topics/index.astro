@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHero from "../../components/PageHero.astro";
-import { topics } from "../../data/topics.js";
+import WritingList from "../../components/WritingList.astro";
+import { topics, allNotes } from "../../data/topics.js";
+const notes = [...allNotes].sort((a, b) => b.date.localeCompare(a.date));
 ---
 
 <BaseLayout
@@ -9,30 +11,97 @@ import { topics } from "../../data/topics.js";
   description="Topic index for Sheva Shen's personal knowledge hub covering agent systems, enterprise AI adoption, harness engineering, and engineering leadership."
 >
   <PageHero
-    eyebrow="Topics"
-    title="A knowledge base for AI systems notes."
-    description="Topics organize what I am learning from agent systems, enterprise AI adoption, harness engineering, OpenClaw experiments, and AI leadership questions."
+    eyebrow="The writing index"
+    title="Investigations, ideas, & field notes."
+    description="What I am learning from agent systems, enterprise AI adoption, harness engineering, OpenClaw experiments, and engineering leadership."
   />
-
-  <section class="section">
-    <div class="container">
-      <div class="card-grid">
-        {
-          topics.map((topic) => (
-            <a class="article-card" href={`/topics/${topic.slug}/`}>
-              <p class="article-meta">{topic.notes.length} notes</p>
-              <h3>{topic.title}</h3>
+  <section class="container section" aria-label="Explore topics">
+    <div class="topic-grid">
+      {
+        topics.map((topic, i) => (
+          <a class="topic-entry" href={`/topics/${topic.slug}/`}>
+            <>
+              <span class="section-kicker">
+                0{i + 1} / {topic.notes.length} notes
+              </span>
+              <h2>{topic.title}</h2>
               <p>{topic.description}</p>
-              <ul class="tag-list">
-                {topic.notes.slice(0, 4).map((note) => (
-                  <li>{note.title}</li>
-                ))}
-              </ul>
-              <span class="card-action">Explore topic →</span>
-            </a>
-          ))
-        }
-      </div>
+              <span class="text-link">Explore topic ↗</span>
+            </>
+          </a>
+        ))
+      }
     </div>
   </section>
+  <section class="container writing-section" id="writing-list">
+    <div class="editorial-heading">
+      <h2>All writing<span>.</span></h2><p id="filter-count" role="status">
+        {notes.length} notes
+      </p>
+    </div>
+    <div class="writing-filters" hidden>
+      <label for="topic-filter">Filter by topic</label><select id="topic-filter"
+        ><option value="">All topics</option>{
+          topics.map((topic) => (
+            <option value={topic.slug}>{topic.title}</option>
+          ))
+        }</select
+      ><span id="tag-filter-label" hidden></span><button
+        id="clear-filter"
+        type="button"
+        hidden>Clear filters ×</button
+      >
+    </div>
+    <WritingList notes={notes} />
+  </section>
+  <script>
+    const controls = document.querySelector<HTMLElement>(".writing-filters");
+    const select = document.querySelector<HTMLSelectElement>("#topic-filter");
+    const clear = document.querySelector<HTMLButtonElement>("#clear-filter");
+    const tagLabel = document.querySelector<HTMLElement>("#tag-filter-label");
+    const count = document.querySelector<HTMLElement>("#filter-count");
+    const rows = [...document.querySelectorAll<HTMLElement>("[data-note]")];
+    if (controls && select && clear && tagLabel && count) {
+      controls.hidden = false;
+      let tag = "";
+      const filter = () => {
+        let visible = 0;
+        rows.forEach((row) => {
+          row.hidden = Boolean(
+            (select.value && row.dataset.topic !== select.value) ||
+            (tag && !JSON.parse(row.dataset.tags || "[]").includes(tag)),
+          );
+          if (!row.hidden) visible++;
+        });
+        count.textContent = `${visible} ${visible === 1 ? "note" : "notes"}`;
+        tagLabel.textContent = tag ? `Tagged: ${tag}` : "";
+        tagLabel.hidden = !tag;
+        clear.hidden = !select.value && !tag;
+      };
+      const readUrl = () => {
+        const params = new URLSearchParams(location.search);
+        select.value = params.get("topic") || "";
+        tag = params.get("tag") || "";
+        filter();
+      };
+      const writeUrl = () => {
+        const url = new URL(location.href);
+        if (select.value) url.searchParams.set("topic", select.value);
+        else url.searchParams.delete("topic");
+        if (tag) url.searchParams.set("tag", tag);
+        else url.searchParams.delete("tag");
+        history.replaceState(null, "", url);
+        filter();
+      };
+      select.addEventListener("change", writeUrl);
+      clear.addEventListener("click", () => {
+        select.value = "";
+        tag = "";
+        writeUrl();
+        select.focus();
+      });
+      window.addEventListener("popstate", readUrl);
+      readUrl();
+    }
+  </script>
 </BaseLayout>

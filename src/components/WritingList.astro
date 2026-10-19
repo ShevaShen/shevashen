@@ -1,0 +1,38 @@
+---
+import { formatDate } from "../utils/dates.js";
+const { notes } = Astro.props;
+---
+
+<ol class="writing-list">
+  {
+    notes.map((note, index) => (
+      <li
+        data-note
+        data-topic={note.topicSlug}
+        data-tags={JSON.stringify(note.tags)}
+      >
+        <a class="writing-item" href={note.href}>
+          <span class="note-number" aria-hidden="true">
+            {String(index + 1).padStart(2, "0")} /
+          </span>
+          <div>
+            <>
+              <span class="note-topic">{note.topic}</span>
+              <h3>{note.title}</h3>
+              <p>{note.summary}</p>
+            </>
+          </div>
+          <div class="note-date">
+            <>
+              <time datetime={note.date}>{formatDate(note.date)}</time>
+              <span>{note.readingTime}</span>
+            </>
+          </div>
+          <span class="note-arrow" aria-hidden="true">
+            ↗
+          </span>
+        </a>
+      </li>
+    ))
+  }
+</ol>

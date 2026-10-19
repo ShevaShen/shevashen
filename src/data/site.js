@@ -10,9 +10,8 @@ export const site = {
 
 export const navItems = [
   { label: "Home", href: "/" },
+  { label: "Writing", href: "/topics/" },
   { label: "About", href: "/about/" },
-  { label: "Topics", href: "/topics/" },
-  { label: "Contact", href: "/contact/" },
 ];
 
 export const currentFocus = [

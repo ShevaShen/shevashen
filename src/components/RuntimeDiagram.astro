@@ -1,0 +1,59 @@
+---
+const { compact = false } = Astro.props;
+---
+
+<figure class:list={["runtime-art", { compact }]}>
+  <svg
+    viewBox="0 0 540 420"
+    role="img"
+    aria-label="Four sessions connect to shared runtime resources. Separate conversations do not guarantee resource isolation."
+  >
+    <g fill="none" stroke="#758b7e" stroke-width="1">
+      <circle cx="270" cy="200" r="160" opacity=".5"></circle>
+      <circle cx="270" cy="200" r="120" opacity=".6"></circle>
+      <circle cx="270" cy="200" r="84" stroke-dasharray="2 6"></circle>
+      <path
+        d="M270 40v320M110 200h320M157 87l226 226M383 87L157 313"
+        stroke="#c5bca2"></path>
+    </g>
+    <rect
+      x="198"
+      y="128"
+      width="144"
+      height="144"
+      fill="#25332c"
+      stroke="#e6a081"></rect>
+    <rect x="214" y="144" width="112" height="112" fill="none" stroke="#617b69"
+    ></rect>
+    <g
+      fill="#eeeae1"
+      font-family="monospace"
+      text-anchor="middle"
+      font-size="13"
+      letter-spacing="3"
+    >
+      <text x="270" y="192">SHARED</text><text x="270" y="214">RUNTIME</text>
+      <text x="270" y="238" fill="#efb08e" font-size="9" letter-spacing="1"
+        >≠ ISOLATION</text
+      >
+    </g>
+    <g fill="#efb08e" stroke="#25332c" stroke-width="5"
+      ><circle cx="270" cy="40" r="8"></circle><circle cx="270" cy="360" r="8"
+      ></circle><circle cx="110" cy="200" r="8"></circle><circle
+        cx="430"
+        cy="200"
+        r="8"></circle></g
+    >
+    <g
+      fill="#c5cec5"
+      font-family="monospace"
+      font-size="10"
+      letter-spacing="1"
+      text-anchor="middle"
+      ><text x="270" y="20">SESSION A</text><text x="270" y="391"
+        >SESSION C</text
+      ><text x="62" y="204">B</text><text x="478" y="204">D</text></g
+    >
+  </svg>
+  <figcaption>Fig. 01 / Independent sessions. Shared resources.</figcaption>
+</figure>

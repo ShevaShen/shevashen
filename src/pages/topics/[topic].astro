@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PageHero from "../../components/PageHero.astro";
+import WritingList from "../../components/WritingList.astro";
 import { topics } from "../../data/topics.js";
 
 export function getStaticPaths() {
@@ -29,28 +30,16 @@ const { topic } = Astro.props;
         <p class="section-kicker">Related Notes</p>
         <h2>Articles in this topic.</h2>
       </div>
-      <div class="card-grid">
-        {
-          topic.notes.map((note) => (
-            <a
-              class="article-card"
-              href={`/topics/${topic.slug}/${note.slug}/`}
-            >
-              <p class="article-meta">
-                {note.date} · {note.readingTime}
-              </p>
-              <h3>{note.title}</h3>
-              <p>{note.summary}</p>
-              <ul class="tag-list">
-                {note.tags.map((tag) => (
-                  <li>{tag}</li>
-                ))}
-              </ul>
-              <span class="card-action">Read note →</span>
-            </a>
-          ))
-        }
-      </div>
+      <WritingList
+        notes={topic.notes
+          .map((note) => ({
+            ...note,
+            topic: topic.title,
+            topicSlug: topic.slug,
+            href: `/topics/${topic.slug}/${note.slug}/`,
+          }))
+          .sort((a, b) => b.date.localeCompare(a.date))}
+      />
     </div>
   </section>
 </BaseLayout>

@@ -1,107 +1,104 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import WritingList from "../components/WritingList.astro";
+import RuntimeDiagram from "../components/RuntimeDiagram.astro";
 import { currentFocus, site } from "../data/site.js";
-import { latestNotes, topics } from "../data/topics.js";
+import { allNotes, topics } from "../data/topics.js";
+const notes = [...allNotes].sort((a, b) => b.date.localeCompare(a.date));
+const featured = notes.find(
+  (note) => note.slug === "openclaw-concurrency-is-not-isolation",
+);
 ---
 
 <BaseLayout title={site.title} description={site.description}>
-  <section class="hero">
-    <div class="hero-inner">
-      <h1>
-        Software Engineering → <span class="text-nowrap">AI Systems</span>
-      </h1>
-      <p class="subhead">Documenting what I learn while building AI systems.</p>
-      <p class="subhead">
-        I'm Sheva, a Staff Engineer exploring agent systems, enterprise AI
-        adoption, harness engineering, and the challenges of turning foundation
-        models into reliable business systems.
+  <section class="hero container">
+    <p class="section-kicker">Engineering notes from the edge of AI</p>
+    <div class="hero-main">
+      <h1>Building the<br />systems behind <em>intelligence.</em></h1>
+      <aside class="hero-aside">
+        <p>
+          I'm Sheva, a Staff Engineer exploring agent systems, enterprise AI
+          adoption, harness engineering, and the challenges of turning
+          foundation models into reliable business systems.
+        </p><a class="text-link" href="#writing">Explore the writing ↗</a>
+      </aside>
+    </div>
+  </section>
+  {
+    featured && (
+      <section class="container" aria-label="Featured investigation">
+        <div class="feature">
+          <div class="feature-copy">
+            <>
+              <div>
+                <>
+                  <p class="section-kicker">Featured investigation / 001</p>
+                  <h2>
+                    <a href={featured.href}>
+                      Concurrency is
+                      <br />
+                      not isolation.
+                    </a>
+                  </h2>
+                  <p>{featured.summary}</p>
+                </>
+              </div>
+              <a class="text-link" href={featured.href}>
+                Read the investigation ↗
+              </a>
+            </>
+          </div>
+          <RuntimeDiagram compact />
+        </div>
+      </section>
+    )
+  }
+  <section class="container writing-section" id="writing">
+    <div class="editorial-heading">
+      <div>
+        <p class="section-kicker">An evolving body of work</p><h2>
+          Selected writing<span>.</span>
+        </h2>
+      </div><p>
+        Experiments, architecture decisions, failures, and lessons from the work
+        of building practical AI systems.
       </p>
-      <p class="context-note">
+    </div>
+    <WritingList notes={notes} />
+    <div class="index-footer">
+      <span>{notes.length} notes and counting</span><a
+        class="text-link"
+        href="/topics/">Browse by topic ↗</a
+      >
+    </div>
+  </section>
+  <section class="container journal-context">
+    <div>
+      <p class="section-kicker">Why this site exists</p><h2>
+        Learning in the open.
+      </h2><p>
+        Most of the content on this site originates from research sessions,
+        implementation work, architecture reviews, and experiments conducted
+        while building AI systems. Rather than presenting final answers, I
+        document investigations, evolving mental models, and lessons learned
+        along the way.
+      </p><p>
         Former frontend engineer and engineering lead. Currently exploring how
         AI changes software, organizations, and the way we build systems.
-      </p>
-      <div class="cta-row">
-        <a class="button primary" href="/topics/">Explore Topics</a>
-        <a class="button secondary" href="/about/">About Me</a>
-      </div>
+      </p><a class="text-link" href="/about/">More about me ↗</a>
     </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-kicker">Current Focus</p>
-        <p class="lede">
-          These are the themes I am actively researching, experimenting with,
-          and organizing notes around while building practical AI systems.
-        </p>
-      </div>
-      <ul class="focus-list">
+    <div>
+      <p class="section-kicker">Current focus</p><ul class="focus-list">
         {currentFocus.map((area) => <li>{area}</li>)}
-      </ul>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-kicker">Why This Site Exists</p>
-        <p class="lede">
-          Most of the content on this site originates from research sessions,
-          implementation work, architecture reviews, and experiments conducted
-          while building AI systems. Rather than presenting final answers, I
-          document investigations, evolving mental models, and lessons learned
-          along the way.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-kicker">Explore Topics</p>
-        <h2>
-          Notes organized around the AI systems questions I am working through.
-        </h2>
-      </div>
-      <div class="card-grid">
+      </ul><nav class="topic-links" aria-label="Explore topics">
         {
           topics.map((topic) => (
-            <a class="article-card" href={`/topics/${topic.slug}/`}>
-              <p class="article-meta">{topic.notes.length} notes</p>
-              <h3>{topic.title}</h3>
-              <p>{topic.description}</p>
-              <span class="card-action">Explore topic →</span>
+            <a href={`/topics/${topic.slug}/`}>
+              {topic.title} <span>↗</span>
             </a>
           ))
         }
-      </div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-kicker">Recent Notes</p>
-        <h2>
-          Recent articles from active AI research and implementation work.
-        </h2>
-      </div>
-      <div class="card-grid">
-        {
-          latestNotes.map((note) => (
-            <a class="article-card" href={note.href}>
-              <p class="article-meta">
-                {note.topic} · {note.readingTime}
-              </p>
-              <h3>{note.title}</h3>
-              <p>{note.summary}</p>
-              <span class="card-action">Read note →</span>
-            </a>
-          ))
-        }
-      </div>
+      </nav>
     </div>
   </section>
 </BaseLayout>
